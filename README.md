@@ -22,7 +22,7 @@
 | GITHUB    | `MISC_002` -- [https://github.com/LRongeart/NUKEutilities/MISC_003](https://github.com/LRongeart/NUKEutilities/MISC_003)
 
 ## D - CONTACTS
-| CONTACT     | `Author E-Mail` -- l.rongeart@ecolescreatives.com\
+| CONTACT     | `Author E-Mail` -- loucas.rongeart@gmail.com\
 | CONTACT     | `Author DiscordID` -- LRongeart
 
 
