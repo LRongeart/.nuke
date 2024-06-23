@@ -1,1 +1,22 @@
-
+set cut_paste_input [stack 0]
+version 14.0 v5
+push $cut_paste_input
+Dot {
+ name Dot31
+ note_font_size 50
+ selected true
+ xpos 2989
+ ypos 146
+ hide_input true
+ addUserKnob {20 User}
+ addUserKnob {1 cryptoReadName}
+ cryptoReadName Read3
+ addUserKnob {22 CONNECT_CRYPTO T "n = nuke.selectedNode()\nvalue = n.knob('cryptoReadName').getValue()\nr = nuke.toNode(value)\nr.knob('selected').setValue(True)\nnuke.connectNodes(False, True)" +STARTLINE}
+}
+Cryptomatte {
+ pickerAdd {0 0 0 0 0 0 0 0}
+ name Cryptomatte1
+ selected true
+ xpos 2961
+ ypos 176
+}
