@@ -12,12 +12,12 @@
 
 
 ## A - GIZMO TABLE OF CONTENT
-| GITHUB LINKS     |  `GIZMO_001` -- [https://github.com/LRongeart/NUKEutilities/GIZMO_001](https://github.com/LRongeart/NUKEutilities/GIZMO_001)
-| GITHUB LINKS    |  `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/GIZMO_002](https://github.com/LRongeart/NUKEutilities/GIZMO_002)
+| GITHUB    | `GIZMO_001` -- [https://github.com/LRongeart/NUKEutilities/GIZMO_001](https://github.com/LRongeart/NUKEutilities/GIZMO_001)
+| GITHUB    | `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/GIZMO_002](https://github.com/LRongeart/NUKEutilities/GIZMO_002)
 
 ## B - MISC TABLE OF CONTENT
-| GITHUB LINKS     |  `MISC_001` -- [https://github.com/LRongeart/NUKEutilities/MISC_001](https://github.com/LRongeart/NUKEutilities/MISC_001)
-| GITHUB LINKS    |  `MISC_002` -- [https://github.com/LRongeart/NUKEutilities/MISC_002](https://github.com/LRongeart/NUKEutilities/MISC_002)
+| GITHUB    | `MISC_001` -- [https://github.com/LRongeart/NUKEutilities/MISC_001](https://github.com/LRongeart/NUKEutilities/MISC_001)
+| GITHUB    | `MISC_002` -- [https://github.com/LRongeart/NUKEutilities/MISC_002](https://github.com/LRongeart/NUKEutilities/MISC_002)
 
 ## D - CONTACTS
 | CONTACT     | `Author E-Mail` -- l.rongeart@ecolescreatives.com\
