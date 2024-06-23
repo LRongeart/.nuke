@@ -7,7 +7,7 @@
 </div>
 
 
->This Repositary's purpose is to share NUKE Gizmos, .nk and other utilities.\
+>This Repositary's purpose is to share NUKE Gizmos, .nk and other utilities.
 
 
 
