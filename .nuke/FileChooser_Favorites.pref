@@ -3,7 +3,5 @@ add_favorite_dir Home Home home_dir ~/
 add_favorite_dir Root Root root_dir /
 add_favorite_dir Current Current "" [pwd]/
 add_favorite_dir Nuke Nuke icon16 "[file dir $program_name]/"
-add_favorite_dir -image -script -project -python -font -geo -misc -sequence CASTOR CASTOR "" //tls-storage02/Prod/CASTOR/
-add_favorite_dir -image -script -project -python -font -geo -misc -sequence 05_SHOT 05_SHOT "" //tls-storage02/Prod/CASTOR/05_SHOT/
 
 # End of generated file.
