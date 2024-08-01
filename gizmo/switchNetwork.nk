@@ -1,0 +1,50 @@
+set cut_paste_input [stack 0]
+version 14.0 v5
+BackdropNode {
+ inputs 0
+ name BackdropNode36
+ tile_color 0xff4400ff
+ label SwitchNetwork
+ note_font "Verdana Bold"
+ note_font_size 42
+ note_font_color 0xffff00ff
+ selected true
+ xpos -5654
+ ypos -5645
+ appearance Border
+ bdwidth 361
+ bdheight 269
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode37
+ tile_color 0xff0000ff
+ note_font_size 42
+ selected true
+ xpos -5460
+ ypos -5561
+ appearance Border
+ bdheight 152
+ z_order 1
+}
+push $cut_paste_input
+NoOp {
+ name SwNet
+ tile_color 0x890000ff
+ label "<small>disk: '\[value this.D]'</small>\n"
+ note_font "Verdana Bold"
+ note_font_size 50
+ note_font_color 0xffff00ff
+ selected true
+ xpos -5450
+ ypos -5535
+ hide_input true
+ addUserKnob {20 User}
+ addUserKnob {1 C l current}
+ C "\[value this.D]/"
+ addUserKnob {68 D l Disk M {P: D: E: F: G: H: "\\\\tls-storage02\\Prod" "" "" "" "" "" "" "" "" "" ""}}
+ D "\\\\tls-storage02\\Prod"
+ addUserKnob {22 Reload l "Reload all Read nodes" T "for node in nuke.allNodes('Read'):\n    node.knob(\"reload\").execute()" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 _1 l "" +STARTLINE T "add '\[value SwNet.C]' to any path to redirect to the above backDrop menu, \nso that you can choose between 'P:', 'D:', 'E:', 'F:', 'G:'; 'H:' or '//tls-storage02'\n\nExample:\n'''\n\[value SwNet.C]/test/testPic.png\n'''"}
+}
