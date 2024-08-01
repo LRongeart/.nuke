@@ -1,0 +1,182 @@
+#! C:/Program Files/Nuke14.0v5/nuke-14.0.5.dll -nx
+version 14.0 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1917" h="1008" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1254" stretch="1"/>
+            <splitter orientation="2">
+                <split size="567"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="399"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                    <page id="DAG.2"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1" focus="true">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name P:/01_ZONE_51/LOUCAS/OUT_ETALO_v01.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ OCIO_config aces_1.2
+ workingSpaceLUT linear
+ monitorLut sRGB
+ monitorOutLUT rec709
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0xff0000ff
+ label OUT_ETALO
+ note_font "Verdana Bold"
+ note_font_size 65
+ xpos 95
+ ypos -154
+ appearance Border
+ bdwidth 409
+ bdheight 196
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos -229
+ ypos -127
+}
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ name Reformat1
+ xpos -229
+ ypos -55
+}
+Dot {
+ name Dot1
+ tile_color 0xff0000ff
+ xpos 149
+ ypos -22
+}
+Group {
+ name OUT_ETALO
+ tile_color 0xff0000ff
+ label "---\nf:\[value this.frameHold]\n\[value root.colorManagement]\n\[value root.OCIO_config]\n\[value root.name]\n\[value root.project_directory]"
+ note_font "Verdana Bold"
+ note_font_color 0xffffffff
+ selected true
+ xpos 319
+ ypos -31
+ addUserKnob {20 User}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 _2 l PATH}
+ addUserKnob {26 _1 l "" -STARTLINE T "\n<p><font color = grey>\nPath needs to be set either:\n</font>\n<p><font color = grey>\n- in 'relativePath' if your scene is set in relative.</p>\nFor this, your current scene\n</font>\n<p><font size = 2><font color = grey>\n-in 'absolutePath', that needs to be setup per show;\n</font>\n<p><font size = 2><font color = grey>\n- in 'customPath' if you want a custom folder export;\n</font></p>"}
+ addUserKnob {4 pathMenu l "Path Type" M {relativePath absolutePath customPath ""}}
+ addUserKnob {6 checkPath -STARTLINE}
+ checkPath true
+ addUserKnob {1 relativePath}
+ relativePath ../
+ addUserKnob {26 _5 l "" -STARTLINE T "default = \"../\""}
+ addUserKnob {1 absolutePath}
+ absolutePath P:/<SHOW>/<SEQFOLDER>/<SHOTFOLDER>/
+ addUserKnob {1 customPath}
+ customPath "<ENTER CUSTOM ABSOLUTE PATH HERE>/"
+ addUserKnob {1 fileName}
+ fileName stillFrameEtalo
+ addUserKnob {26 _4 l "" -STARTLINE T "default = \"stillFrameEtalo\""}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 _3 l FRAME}
+ addUserKnob {1 frameHold}
+ frameHold 1001
+ addUserKnob {26 ""}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 231
+  ypos -118
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.\[value parent.pathMenu]]\n\[value root.name]\n\[value root.project_directory]\n"
+  old_message {{46 46 47 10 80 58 47 48 49 95 90 79 78 69 95 53 49 47 76 79 85 67 65 83 47 79 85 84 95 69 84 65 76 79 95 118 48 49 46 110 107 10 10}
+    }
+  old_expression_markers {{0 2 4 40 42 41}
+    }
+  box {0 0 2163 1657}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 88
+  global_font_scale 0.55
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  enable_background true
+  name Text1
+  selected true
+  xpos 232
+  ypos -53
+  disable {{1-parent.checkPath}}
+ }
+set N62564800 [stack 0]
+ Write {
+  file "\[value parent.\[value parent.pathMenu]]\[value parent.fileName].exr"
+  colorspace sRGB
+  file_type exr
+  compression none
+  first_part rgba
+  checkHashOnRead false
+  name Write1
+  xpos 231
+  ypos 2
+ }
+ Output {
+  name Output1
+  xpos 231
+  ypos 63
+ }
+push $N62564800
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  xpos 400
+  ypos 82
+ }
+end_group
+Viewer {
+ frame_range 1-100
+ monitorOutOutputTransform rec709
+ name Viewer1
+ xpos -40
+ ypos -9
+}
