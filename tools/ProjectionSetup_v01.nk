@@ -1,0 +1,621 @@
+#! C:/Program Files/Nuke13.1v2/nuke-13.1.2.dll -nx
+version 13.1 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-1" y="-8" w="3440" h="1377" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="2668" stretch="1"/>
+            <splitter orientation="1">
+                <split size="1405"/>
+                <splitter orientation="2">
+                    <split size="851"/>
+                    <dock id="" activePageId="Viewer.1">
+                        <page id="Viewer.1"/>
+                    </dock>
+                    <split size="484"/>
+                    <dock id="" activePageId="Pixel Analyzer.1">
+                        <page id="Curve Editor.1"/>
+                        <page id="DopeSheet.1"/>
+                        <page id="uk.co.thefoundry.scripteditor.1"/>
+                        <page id="uk.co.thefoundry.histogram.1"/>
+                        <page id="uk.co.thefoundry.waveformscope.1"/>
+                        <page id="uk.co.thefoundry.vectorscope.1"/>
+                        <page id="Pixel Analyzer.1"/>
+                    </dock>
+                </splitter>
+                <split size="1259"/>
+                <splitter orientation="2">
+                    <split size="1339"/>
+                    <dock id="" activePageId="DAG.1" focus="true">
+                        <page id="DAG.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="724"/>
+            <splitter orientation="2">
+                <split size="1339"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name D:/00_RSRC/08__COMPOSITING/ProjectionSetup_v01.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath "C:/Program Files/Nuke13.1v2/plugins/OCIOConfigs/configs/aces_CUSTOM/config.ocio"
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT show_acescg_in
+ monitorLut ACES/show_acescg_view
+ monitorOutLUT "show_acescg_view (ACES)"
+ int8Lut show_acescg_in
+ int16Lut show_acescg_in
+ logLut show_acescglog_in
+ floatLut show_acescgraw_in
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x388e8e00
+ note_font_size 42
+ xpos -237
+ ypos -306
+ appearance Border
+ bdwidth 547
+ bdheight 1017
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0xb67164ff
+ label "       ISOLATE \n       FIXED\n       DETAILS"
+ note_font_size 42
+ note_font_color 0xffffffff
+ xpos 109
+ ypos 817
+ appearance Border
+ bdwidth 298
+ bdheight 177
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0x388e8e00
+ note_font_size 42
+ xpos 1153
+ ypos -304
+ appearance Border
+ bdwidth 547
+ bdheight 1017
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0xb67164ff
+ label "       ISOLATE \n       FIXED\n       DETAILS"
+ note_font_size 42
+ note_font_color 0xffffffff
+ xpos 1499
+ ypos 819
+ appearance Border
+ bdwidth 298
+ bdheight 177
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant3
+ xpos 119
+ ypos 834
+ postage_stamp false
+}
+Reformat {
+ type "to box"
+ box_width 1998
+ box_height 1080
+ box_fixed true
+ name Reformat3
+ label "SHOT\nFORMAT\n\[value this.box_width]x\[value this.box_height]"
+ note_font "Verdana Bold"
+ xpos 119
+ ypos 858
+}
+Roto {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 0}
+    {t x44800000 x44428000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}}}}}
+ toolbox {createBezier {
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1024 778}
+ name Roto1
+ xpos 119
+ ypos 951
+}
+Camera3 {
+ inputs 0
+ name Camera1
+ xpos -227
+ ypos -226
+}
+Dot {
+ name Dot1
+ tile_color 0x5d0036ff
+ label "   ANIMATED\n   SHOT CAM"
+ note_font "Verdana Bold"
+ note_font_color 0xff00ffff
+ xpos -209
+ ypos -105
+}
+Dot {
+ name Dot3
+ xpos -209
+ ypos 67
+}
+set N6785d400 [stack 0]
+Dot {
+ name Dot7
+ xpos -209
+ ypos 544
+}
+push $N6785d400
+FrameHold {
+ firstFrame 1
+ name FrameHold2
+ tile_color 0xff0000ff
+ label "---\nCHOOSE A\nPROJECTION FRAME"
+ note_font "Verdana Bold"
+ note_font_color 0xff
+ xpos -128
+ ypos 46
+}
+set C678b8100 [stack 0]
+Input {
+ inputs 0
+ name Input1
+ xpos -14
+ ypos -176
+}
+Dot {
+ name Dot4
+ tile_color 0x5d5aff
+ label "   FIXED\n   SHOT WITH\n   ROTO / DMP"
+ note_font "Verdana Bold"
+ note_font_color 0xfff5ff
+ xpos 14
+ ypos -107
+}
+clone $C678b8100 {
+ xpos -14
+ ypos -60
+ selected false
+}
+Project3D2 {
+ inputs 2
+ name Project3D1
+ xpos -14
+ ypos 70
+}
+ReadGeo2 {
+ inputs 0
+ name ReadGeo1
+ xpos 228
+ ypos -211
+}
+Dot {
+ name Dot2
+ tile_color 0x8a8a00ff
+ label "   ANIMATED\n   OBJECT FBX"
+ note_font "Verdana Bold"
+ note_font_color 0xffff00ff
+ xpos 256
+ ypos -136
+}
+Dot {
+ name Dot5
+ xpos 256
+ ypos 114
+}
+set N6785cc00 [stack 0]
+clone $C678b8100 {
+ xpos 155
+ ypos 93
+ selected false
+}
+ApplyMaterial {
+ inputs 2
+ name ApplyMaterial1
+ xpos -14
+ ypos 117
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos 96
+ ypos 258
+ postage_stamp false
+}
+Reformat {
+ type "to box"
+ box_width 4096
+ box_height 4096
+ box_fixed true
+ name Reformat1
+ label "----\nCHOOSE TEXTURE\nRESOLUTION"
+ note_font "Verdana Bold"
+ xpos 96
+ ypos 282
+}
+ScanlineRender {
+ inputs 2
+ conservative_shader_sampling false
+ projection_mode uv
+ motion_vectors_type distance
+ name ScanlineRender1
+ xpos -14
+ ypos 300
+}
+push $N6785cc00
+Dot {
+ name Dot6
+ xpos 256
+ ypos 399
+}
+ApplyMaterial {
+ inputs 2
+ name ApplyMaterial2
+ xpos -14
+ ypos 402
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant2
+ xpos 103
+ ypos 499
+ postage_stamp false
+}
+Reformat {
+ type "to box"
+ box_width 1998
+ box_height 1080
+ box_fixed true
+ name Reformat2
+ label "SHOT\nFORMAT\n\[value this.box_width]x\[value this.box_height]"
+ note_font "Verdana Bold"
+ xpos 103
+ ypos 529
+}
+ScanlineRender {
+ inputs 3
+ conservative_shader_sampling false
+ projection_mode uv
+ motion_vectors_type distance
+ name ScanlineRender2
+ xpos -14
+ ypos 547
+}
+Dot {
+ name Dot8
+ xpos 14
+ ypos 665
+}
+Dot {
+ inputs 0
+ name Dot9
+ xpos -425
+ ypos 406
+}
+Dot {
+ name Dot19
+ xpos -425
+ ypos 954
+}
+Merge2 {
+ inputs 2+1
+ name Merge1
+ xpos -14
+ ypos 957
+}
+Viewer {
+ frame 1
+ frame_range 1-100
+ viewerProcess "show_acescg_view (ACES)"
+ name Viewer1
+ xpos 24
+ ypos 1101
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant4
+ xpos 1509
+ ypos 836
+ postage_stamp false
+}
+Reformat {
+ type "to box"
+ box_width 1998
+ box_height 1080
+ box_fixed true
+ name Reformat4
+ label "SHOT\nFORMAT\n\[value this.box_width]x\[value this.box_height]"
+ note_font "Verdana Bold"
+ xpos 1509
+ ypos 860
+}
+Roto {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 0}
+    {t x44800000 x44428000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}}}}}
+ toolbox {createBezier {
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1024 778}
+ name Roto2
+ xpos 1509
+ ypos 953
+}
+Dot {
+ inputs 0
+ name Dot18
+ xpos 968
+ ypos 380
+}
+Dot {
+ name Dot16
+ xpos 968
+ ypos 462
+}
+set N220fec00 [stack 0]
+Remove {
+ operation keep
+ name Remove1
+ label "keep only\n'__st'"
+ xpos 1177
+ ypos 447
+}
+Camera3 {
+ inputs 0
+ name Camera2
+ xpos 1163
+ ypos -224
+}
+Dot {
+ name Dot10
+ tile_color 0x5d0036ff
+ label "   ANIMATED\n   SHOT CAM"
+ note_font "Verdana Bold"
+ note_font_color 0xff00ffff
+ xpos 1181
+ ypos -103
+}
+Dot {
+ name Dot11
+ xpos 1181
+ ypos 69
+}
+FrameHold {
+ firstFrame 1
+ name FrameHold1
+ tile_color 0xff0000ff
+ label "---\nCHOOSE A\nPROJECTION FRAME"
+ note_font "Verdana Bold"
+ note_font_color 0xff
+ xpos 1244
+ ypos 48
+}
+set C21ecb200 [stack 0]
+Input {
+ inputs 0
+ name Input2
+ xpos 1376
+ ypos -174
+ number 1
+}
+Dot {
+ name Dot13
+ tile_color 0x5d5aff
+ label "   FIXED\n   SHOT WITH\n   ROTO / DMP"
+ note_font "Verdana Bold"
+ note_font_color 0xfff5ff
+ xpos 1404
+ ypos -105
+}
+clone $C21ecb200 {
+ xpos 1376
+ ypos -58
+ selected false
+}
+Project3D2 {
+ inputs 2
+ name Project3D2
+ xpos 1376
+ ypos 72
+}
+ReadGeo2 {
+ inputs 0
+ name ReadGeo2
+ xpos 1618
+ ypos -209
+}
+Dot {
+ name Dot14
+ tile_color 0x8a8a00ff
+ label "   ANIMATED\n   OBJECT FBX"
+ note_font "Verdana Bold"
+ note_font_color 0xffff00ff
+ xpos 1646
+ ypos -134
+}
+Dot {
+ name Dot15
+ xpos 1646
+ ypos 116
+}
+clone $C21ecb200 {
+ xpos 1520
+ ypos 95
+ selected false
+}
+ApplyMaterial {
+ inputs 2
+ name ApplyMaterial3
+ xpos 1376
+ ypos 119
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant5
+ xpos 1486
+ ypos 260
+ postage_stamp false
+}
+Reformat {
+ type "to box"
+ box_width 4096
+ box_height 4096
+ box_fixed true
+ name Reformat5
+ label "----\nCHOOSE TEXTURE\nRESOLUTION"
+ note_font "Verdana Bold"
+ xpos 1486
+ ypos 284
+}
+ScanlineRender {
+ inputs 2
+ conservative_shader_sampling false
+ projection_mode uv
+ motion_vectors_type distance
+ name ScanlineRender3
+ xpos 1376
+ ypos 302
+}
+Transform {
+ center {1024 778}
+ name Transform1
+ xpos 1376
+ ypos 377
+}
+STMap {
+ inputs 2
+ name STMap1
+ label "---\nCHANGE\nthis.UVChannels\nto '__st'"
+ note_font "Verdana Bold"
+ xpos 1376
+ ypos 435
+}
+Dot {
+ name Dot17
+ xpos 1404
+ ypos 667
+}
+push $N220fec00
+Dot {
+ name Dot12
+ xpos 968
+ ypos 956
+}
+Merge2 {
+ inputs 2+1
+ name Merge2
+ xpos 1376
+ ypos 959
+}
+StickyNote {
+ inputs 0
+ name StickyNote3
+ tile_color 0x929269ff
+ label "INPUT IS THE SHOT"
+ note_font "Verdana Bold"
+ note_font_color 0xffffffff
+ xpos 922
+ ypos 307
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ tile_color 0x929269ff
+ label "INPUT IS THE SHOT"
+ note_font "Verdana Bold"
+ note_font_color 0xffffffff
+ xpos -477
+ ypos 343
+}
+StickyNote {
+ inputs 0
+ name StickyNote2
+ tile_color 0x929269ff
+ label "SURFACE MAPPING"
+ note_font "Verdana Bold"
+ note_font_size 60
+ note_font_color 0xffffffff
+ xpos -255
+ ypos -416
+}
+StickyNote {
+ inputs 0
+ name StickyNote4
+ tile_color 0x929269ff
+ label "__ST MAPPING"
+ note_font "Verdana Bold"
+ note_font_size 60
+ note_font_color 0xffffffff
+ xpos 1179
+ ypos -414
+}
