@@ -1,0 +1,66 @@
+#! C:/Program Files/Nuke14.0v5/nuke-14.0.5.dll -nx
+version 14.0 v5
+Gizmo {
+ tile_color 0xc66a31ff
+ addUserKnob {20 tab l BGDefocus}
+ addUserKnob {7 distance l "Distance (in meters)" R 0 1000}
+ distance 500
+ addUserKnob {6 boolean l "Use scene Defocus" +STARTLINE}
+ boolean true
+}
+ Constant {
+  inputs 0
+  channels rgb
+  color {{parent.distance} 0 0 0}
+  name DISTANCE
+  xpos 825
+  ypos -202
+ }
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 depth
+  fromInput2 {{0} B}
+  mappings "1 rgba.red 0 0 depth.Z 0 0"
+  name Shuffle1
+  xpos 825
+  ypos -114
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 935
+  ypos -241
+ }
+ Copy {
+  inputs 2
+  from0 depth.Z
+  to0 depth.Z
+  name Copy18
+  selected true
+  xpos 935
+  ypos -120
+ }
+set N38200400 [stack 0]
+ ZDefocus2 {
+  center 5
+  size 1.9
+  max_size 32
+  name ZDefocus2
+  xpos 1038
+  ypos -25
+ }
+ set C14c2a400 [stack 0]
+push $N38200400
+ Switch {
+  inputs 2
+  which {{parent.boolean}}
+  name Switch1
+  xpos 935
+  ypos 78
+ }
+ Output {
+  name Output1
+  xpos 935
+  ypos 205
+ }
+end_group
