@@ -181,6 +181,18 @@ if nuke.usingPerformanceTimers():
 # Shuffle Label to display Channel Input name
 nuke.knobDefault("Shuffle.label", "[value in1]")
 
+# Write InputColorSpace to custom ColorSpace Input name
+nuke.knobDefault("Write.colorspace", "show_acescg_out")
+
+# Read InputColorSpace + RAW Override
+nuke.knobDefault("Read.colorspace", "show_acescg_in")
+nuke.knobDefault("Read.raw", "1")
+
+# OCIOColorSpace InputColorSpace/OutputColorSpace Overrides
+nuke.knobDefault("OCIOColorSpace.in_colorspace", "show_acescg_view")
+nuke.knobDefault("OCIOColorSpace.out_colorspace", "show_acescg_in")
+
+
 nuke.pluginAddPath("//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
 
 ####Tractor
