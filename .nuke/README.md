@@ -1,6 +1,3 @@
-'''
-Main repository for .nuke folder
-'''
 <div align="center">
 	<h1>LR_NUKE/.nuke</h1>
 	<p>
