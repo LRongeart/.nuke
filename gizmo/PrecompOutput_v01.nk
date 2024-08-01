@@ -1,0 +1,189 @@
+#! C:/Program Files/Nuke14.0v5/nuke-14.0.5.dll -nx
+version 14.0 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1917" h="1008" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1165" stretch="1"/>
+            <splitter orientation="2">
+                <split size="930"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                    <page id="Viewer.2"/>
+                </dock>
+                <split size="36"/>
+                <dock id="" activePageId="Curve Editor.1">
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="350"/>
+            <dock id="" activePageId="DAG.1" focus="true">
+                <page id="DAG.1"/>
+            </dock>
+            <split size="350"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name P:/01_ZONE_51/LOUCAS/gizmos/PrecompOutput_v01.nk
+ project_directory "\[python \{nuke.script_directory()\}]"
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ OCIO_config aces_1.2
+ workingSpaceLUT linear
+ monitorLut sRGB
+ monitorOutLUT rec709
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode83
+ tile_color 0xff0000ff
+ label PRECOMP
+ note_font_size 42
+ xpos -141
+ ypos -172
+ appearance Border
+ bdwidth 204
+ bdheight 177
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ xpos -348
+ ypos -220
+}
+Dot {
+ name Dot167
+ tile_color 0xff5f00ff
+ label "\nIN"
+ note_font_size 50
+ note_font_color 0xffffffff
+ xpos -320
+ ypos -81
+}
+set N154b0800 [stack 0]
+push $N154b0800
+Group {
+ inputs 2
+ name PRECOMP
+ tile_color {{0!=1?124476:92222245464644878}}
+ label "\[value this.input]\n\[knob tile_color \[value this.\[value this.input]]!=1?124476:92222245464644878]"
+ note_font_size 30
+ note_font_color 0xffffffff
+ xpos -74
+ ypos -106
+ lock_connections {{curve x1 0 x134 0}}
+ addUserKnob {20 User}
+ addUserKnob {26 _1 l "" +STARTLINE T "Description:\nIn order for this node to work:\n- In your ProjectSettings ('S'), press \"Project Directory\",\nOr put the following string: '\[python \{nuke.script_directory()\}]';\n- Save your scene in your nuke folder;\n- Export your PreComp by pressing 'OUTprecomp';\n- You can either view your Input or read your Precomp sequence by\nchoosing respectively 'input.graph' or 'input.precomp';\n- The OutputPath attribute will export your precomp sequence in\na folder in relativePath, depending where your current .nk is."}
+ addUserKnob {26 ""}
+ addUserKnob {68 input M {graph precomp}}
+ addUserKnob {1 graph +INVISIBLE}
+ graph 0
+ addUserKnob {1 precomp +INVISIBLE}
+ precomp 1
+ addUserKnob {1 path l "Output path"}
+ path output/precomp/v00/<LAYERNAME>/<LAYERNAME>.####.exr
+ addUserKnob {26 ""}
+ addUserKnob {22 OUTprecomp T nuke.execute('Write_MG',101,180) +STARTLINE}
+}
+ Read {
+  inputs 0
+  file_type exr
+  file "\[value parent.path]"
+  origset true
+  name Read1
+  selected true
+  xpos 490
+  ypos -508
+ }
+ Dot {
+  name Dot1
+  xpos 518
+  ypos -353
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 323
+  ypos -734
+ }
+ Dot {
+  name Dot2
+  xpos 351
+  ypos -464
+ }
+set N154b1800 [stack 0]
+ Switch {
+  inputs 2
+  which {{"\[value parent.\[value parent.input]]==1?1:0"}}
+  name Switch1
+  tile_color 0xff000000
+  label "\[knob tile_color \[value which]01]"
+  xpos 323
+  ypos -350
+ }
+ Output {
+  name Output1
+  xpos 323
+ }
+ Viewer {
+  inputs 0
+  frame 101
+  frame_range 101-180
+  gain 30
+  name Viewer1
+  xpos 595
+  ypos -265
+ }
+push $N154b1800
+ Write {
+  channels rgba
+  file "\[value parent.path]"
+  file_type exr
+  first_part rgba
+  create_directories true
+  checkHashOnRead false
+  version 1
+  name Write_MG
+  xpos 219
+  ypos -495
+  postage_stamp true
+ }
+end_group
+set N154c0000 [stack 0]
+Viewer {
+ frame 1
+ frame_range 1-100
+ monitorOutOutputTransform rec709
+ name Viewer1
+ xpos -74
+ ypos 62
+}
+push $N154c0000
+Dot {
+ name Dot2
+ tile_color 0xff5f00ff
+ label "\nOUT"
+ note_font_size 50
+ note_font_color 0xffffffff
+ xpos 172
+ ypos -81
+}
