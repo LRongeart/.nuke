@@ -192,6 +192,9 @@ nuke.knobDefault("Read.raw", "1")
 nuke.knobDefault("OCIOColorSpace.in_colorspace", "show_acescg_view")
 nuke.knobDefault("OCIOColorSpace.out_colorspace", "show_acescg_in")
 
+# Connect InputHidden set as True
+nuke.knobDefault("Connect.hide_input", "true")
+
 
 nuke.pluginAddPath("//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
 
