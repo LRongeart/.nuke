@@ -1,0 +1,437 @@
+Group {
+ name HighPasser
+ help "A lightweight Sharpen tool with a soft-clamp for low and high values, which is useful to avoid halos around high contrast areas. It should yield more elegant and even results than the default Sharpen node especially at high size numbers."
+ tile_color 0xff9432ff
+ addUserKnob {20 User}
+ addUserKnob {6 lowClamp l "low clamp" t "clamp negative values to 0.0 before processing" +STARTLINE}
+ lowClamp true
+ addUserKnob {6 highClamp l "high clamp" t "clamp overexposed values to 1.0 before processing" -STARTLINE}
+ addUserKnob {7 minimum t "Minimum value of the raw input vs the sharpened input.\nUseful for \"soft clamping\" low values"}
+ minimum 0.5
+ addUserKnob {7 maximum t "Maximum value of the raw input vs the sharpened input.\nUseful for \"soft clamping\" high values"}
+ maximum 1
+ addUserKnob {6 tint_panelDropped l "panel dropped state" +HIDDEN +STARTLINE}
+ addUserKnob {6 tint_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {41 white l gain t "good for coloring only the sharpened frequencies. Leave at 1 to keep input color" T Grade3.white}
+ addUserKnob {7 amount t "usually you don't have to turn this above 1. Try finding the right frequencies instead. Or create several nodes for different frequencies."}
+ amount 1
+ addUserKnob {14 size t "choose frequencies to affect" R 0 100}
+ size 10
+ addUserKnob {41 filter -STARTLINE T Blur3.filter}
+ addUserKnob {26 dampen_info l <b>dampen t "Reduce effect on contrasted areas using sobel edge detection" T " - Reduce effect on contrasted areas using sobel edge detection"}
+ addUserKnob {7 dampenThresh l threshold t "Edge detect threshold (sobel)"}
+ dampenThresh 0.5
+ addUserKnob {6 dampenPreview l preview t "preview area that will be dampened" -STARTLINE}
+ addUserKnob {7 dampenErode l erode t "Increase/Decrease area affected by dampening" R -10 10}
+ dampenErode 1
+ addUserKnob {7 dampenSoftness l softness t "Blur dampened area for smoother mixing with the sharpened result" R 0 100}
+ addUserKnob {7 dampenMix l "damp mix" t "Mix the input over the sharpened image"}
+ addUserKnob {26 ""}
+ addUserKnob {7 mix t "dissolve between input at 0 and output at 1"}
+ mix 1
+ addUserKnob {26 ""}
+ addUserKnob {26 info l "" +STARTLINE T "HighPasser v1.0 - Fynn Laue 2021"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 1060
+  ypos -321
+ }
+ Dot {
+  name Dot21
+  xpos 1094
+  ypos -174
+ }
+set N86f52800 [stack 0]
+ Dot {
+  name Dot22
+  xpos 1094
+  ypos 258
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N86f52400 [stack 0]
+ Dot {
+  name Dot23
+  xpos 1094
+  ypos 594
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N86f52000 [stack 0]
+ Dot {
+  name Dot2
+  xpos 984
+  ypos 594
+ }
+set N86f51c00 [stack 0]
+ EdgeDetectWrapper {
+  threshold {{parent.dampenThresh}}
+  erodesize {{-parent.dampenErode}}
+  name EdgeDetect1
+  xpos 950
+  ypos 633
+ }
+ FilterErode {
+  size {{-parent.dampenErode}}
+  filter quadratic
+  name FilterErode1
+  xpos 950
+  ypos 681
+ }
+ Blur {
+  size {{parent.dampenSoftness}}
+  name Blur1
+  xpos 950
+  ypos 729
+ }
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle1
+  xpos 950
+  ypos 807
+ }
+set N86f50c00 [stack 0]
+ Dot {
+  name Dot4
+  xpos 984
+  ypos 1170
+ }
+push $N86f52000
+ Dot {
+  name Dot24
+  xpos 1094
+  ypos 930
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N86f50400 [stack 0]
+push $N86f50c00
+push $N86f51c00
+ Dot {
+  name Dot6
+  xpos 764
+  ypos 594
+ }
+set N2f62bc00 [stack 0]
+ Dot {
+  name Dot7
+  xpos 544
+  ypos 594
+ }
+ Dot {
+  name Dot8
+  xpos 544
+  ypos 810
+ }
+push $N86f52400
+ Dot {
+  name Dot25
+  xpos 764
+  ypos 258
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N2f62b000 [stack 0]
+ Dot {
+  name Dot26
+  xpos 544
+  ypos 258
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+ Dot {
+  name Dot27
+  xpos 544
+  ypos 330
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+push $N86f52800
+ Dot {
+  name Dot28
+  xpos 654
+  ypos -174
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N2f62a400 [stack 0]
+ Dot {
+  name Dot29
+  xpos 434
+  ypos -174
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N2f62a000 [stack 0]
+ Dot {
+  name Dot30
+  xpos 324
+  ypos -174
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N2f629c00 [stack 0]
+ Dot {
+  name Dot31
+  xpos 214
+  ypos -174
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+set N2f629800 [stack 0]
+ Dot {
+  name Dot32
+  xpos 104
+  ypos -174
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+ Blur {
+  size {{parent.size.w} {parent.size.h}}
+  quality 5
+  name Blur3
+  label size
+  xpos 70
+  ypos -93
+ }
+push $N2f629800
+ Merge2 {
+  inputs 2
+  operation from
+  name Merge7
+  label "high Freq"
+  xpos 180
+  ypos -87
+ }
+ Dot {
+  name Dot33
+  xpos 214
+  ypos 90
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+push $N2f629c00
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge12
+  xpos 290
+  ypos 87
+ }
+set N2f628400 [stack 0]
+ Clamp {
+  maximum_enable false
+  mix {{parent.lowClamp}}
+  name Clamp1
+  label "low clamp"
+  xpos 290
+  ypos 123
+ }
+ Dot {
+  name Dot34
+  xpos 324
+  ypos 210
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+push $N2f62a000
+ Merge2 {
+  inputs 2
+  operation min
+  mix {{1-parent.minimum}}
+  name Merge13
+  label minimum
+  xpos 400
+  ypos 201
+ }
+ Merge2 {
+  inputs 2
+  operation from
+  name Merge14
+  xpos 400
+  ypos 327
+ }
+ Grade {
+  black_clamp false
+  enable_mix_luminance false
+  name Grade3
+  label tint
+  xpos 400
+  ypos 393
+ }
+ Dot {
+  name Dot35
+  xpos 434
+  ypos 450
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+push $N2f62b000
+ Dot {
+  name Dot36
+  xpos 764
+  ypos 330
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+push $N2f628400
+ Dot {
+  name Dot37
+  xpos 544
+  ypos 90
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+ Clamp {
+  minimum_enable false
+  mix {{parent.highClamp}}
+  name Clamp2
+  label "high clamp"
+  xpos 510
+  ypos 123
+ }
+ Dot {
+  name Dot38
+  xpos 544
+  ypos 210
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+push $N2f62a400
+ Merge2 {
+  inputs 2
+  operation max
+  mix {{parent.maximum}}
+  name Merge15
+  label maximum
+  xpos 620
+  ypos 201
+ }
+ Merge2 {
+  inputs 2
+  operation from
+  name Merge16
+  xpos 620
+  ypos 327
+ }
+ Grade {
+  white {{parent.Grade3.white.r} {parent.Grade3.white.g} {parent.Grade3.white.r} 1}
+  black_clamp false
+  enable_mix_luminance false
+  name Grade1
+  label tint
+  xpos 620
+  ypos 393
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge17
+  xpos 620
+  ypos 447
+ }
+ Multiply {
+  value {{parent.amount}}
+  name Multiply1
+  xpos 620
+  ypos 515
+ }
+ Dot {
+  name Dot5
+  xpos 654
+  ypos 666
+ }
+push $N2f62bc00
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge18
+  xpos 730
+  ypos 663
+ }
+ Merge2 {
+  inputs 2+1
+  operation copy
+  mix {{parent.dampenMix}}
+  name Merge2
+  xpos 730
+  ypos 807
+ }
+ ShuffleCopy {
+  inputs 2
+  name ShuffleCopy2
+  label "preserve alpha"
+  xpos 730
+  ypos 921
+ }
+ Dot {
+  name Dot39
+  xpos 764
+  ypos 1050
+  addUserKnob {20 User +INVISIBLE}
+  addUserKnob {1 parentNode +INVISIBLE}
+  addUserKnob {1 parentScript +INVISIBLE}
+  parentScript /mnt/nfs/riptor/users/fynnl/development/nuke/nodes/highPasser/highPasser_dev_v004.nk
+ }
+push $N86f50400
+ Dissolve {
+  inputs 2
+  channels rgb
+  which {{parent.mix}}
+  name Dissolve2
+  label mix
+  xpos 1060
+  ypos 1041
+ }
+ Switch {
+  inputs 2
+  which {{parent.dampenPreview}}
+  name Switch1
+  label "preview dampen mask"
+  xpos 1060
+  ypos 1161
+ }
+ Output {
+  name Output1
+  xpos 1060
+  ypos 1287
+ }
+end_group
