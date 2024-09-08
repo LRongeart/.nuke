@@ -11,20 +11,15 @@
 
 ## A - FOLDER TABLE OF CONTENT
 | GITHUB    | `.nuke` -- [https://github.com/LRongeart/NUKEutilities/tree/main/.nuke](https://github.com/LRongeart/NUKEutilities/tree/main/.nuke)\
-| GITHUB    | `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_002](https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_002)\
-| GITHUB    | `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_003](https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_003)
+| GITHUB    | `ULTIMATE_TEMPLATE` -- [https://github.com/LRongeart/NUKEutilities/tree/main/ULTIMATE_TEMPLATE](https://github.com/LRongeart/NUKEutilities/tree/main/ULTIMATE_TEMPLATE)\
+| GITHUB    | `gizmo` -- [https://github.com/LRongeart/NUKEutilities/tree/main/gizmo](https://github.com/LRongeart/NUKEutilities/tree/main/gizmo)\
+| GITHUB    | `misc` -- [https://github.com/LRongeart/NUKEutilities/tree/main/misc](https://github.com/LRongeart/NUKEutilities/tree/main/misc)\
+| GITHUB    | `nk_OUT_ETALO` -- [https://github.com/LRongeart/NUKEutilities/tree/main/nk_OUT_ETALO](https://github.com/LRongeart/NUKEutilities/tree/main/nk_OUT_ETALO)\
+| GITHUB    | `ocio/aces_SHOW` -- [https://github.com/LRongeart/NUKEutilities/tree/main/ocio/aces_SHOW](https://github.com/LRongeart/NUKEutilities/tree/main/ocio/aces_SHOW)\
+| GITHUB    | `pipeline` -- [https://github.com/LRongeart/NUKEutilities/tree/main/pipeline](https://github.com/LRongeart/NUKEutilities/tree/main/pipeline)\
+| GITHUB    | `tools` -- [https://github.com/LRongeart/NUKEutilities/tree/main/tools](https://github.com/LRongeart/NUKEutilities/tree/main/tools)\
 
-## B - GIZMO TABLE OF CONTENT
-| GITHUB    | `GIZMO_001` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_001](https://github.com/LRongeart/NUKEutilities/blob/6ef4f32d0838ead6a2cc6a15b979239144b9871b/gizmo/GIZMO_001)\
-| GITHUB    | `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_002](https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_002)\
-| GITHUB    | `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_003](https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_003)
-
-## C - MISC TABLE OF CONTENT
-| GITHUB    | `MISC_001` -- [https://github.com/LRongeart/NUKEutilities/misc/MISC_001](https://github.com/LRongeart/NUKEutilities/misc/MISC_001)\
-| GITHUB    | `MISC_002` -- [https://github.com/LRongeart/NUKEutilities/misc/MISC_002](https://github.com/LRongeart/NUKEutilities/misc/MISC_002)\
-| GITHUB    | `MISC_002` -- [https://github.com/LRongeart/NUKEutilities/misc/MISC_003](https://github.com/LRongeart/NUKEutilities/misc/MISC_003)
-
-## D - CONTACTS
+## B - CONTACTS
 | CONTACT     | `Author E-Mail` -- loucas.rongeart@gmail.com\
 | CONTACT     | `Author DiscordID` -- LRongeart
 
