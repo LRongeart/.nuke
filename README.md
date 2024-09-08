@@ -1,7 +1,7 @@
 <div align="center">
 	<h1>LR_NUKEutilities</h1>
 	<p>
-		<b>Repository for the ESMA-TLS NUKE/Compositing </b>
+		<b>ESMA-TLS Repository for Compositing on NUKE </b>
 	</p>
 	<br>
 </div>
