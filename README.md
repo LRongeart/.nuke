@@ -7,7 +7,11 @@
 </div>
 
 
->This Repositary's purpose is to share the ESMA-TLS NUKE software environmentn including gizmos, .nk and other utilities.
+>This Repositary's purpose is to share the ESMA-TLS NUKE software environment, including:
+>- gizmos,
+>- .nk,
+>- pipeline tools,
+>- other utilities;
 
 ## A - FOLDER TABLE OF CONTENT
 | GITHUB    | `.nuke` -- [https://github.com/LRongeart/NUKEutilities/tree/main/.nuke](https://github.com/LRongeart/NUKEutilities/tree/main/.nuke)\
