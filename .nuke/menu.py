@@ -24,6 +24,10 @@ import NST_helper
 global prefixNST
 prefixNST = "NST_"
 
+# Import Reformat Presets
+import reformat_presets
+reformat_presets.nodePresetReformat()
+
 # Store the location of this menu.py to help with nuke.nodePaste() which requires a filepath to paste
 NST_FolderPath = os.path.dirname(__file__)
 NST_helper.NST_FolderPath = NST_FolderPath
@@ -453,6 +457,14 @@ filterMenu.addCommand('MECfiller NKPD', "nuke.createNode('{}MECfiller')".format(
 
 #Add OpticalZDefocus
 nuke.menu('Nodes').addCommand('Filter/OpticalZDefocus', "nuke.createNode('OpticalZDefocus.gizmo')")
+
+############################################################################################################
+############################################################################################################
+
+#Add TX gizmos
+nuke.menu('Nodes').addCommand('TX_Bloom', "nuke.createNode('TX_Bloom.gizmo')")
+nuke.menu('Nodes').addCommand('TX_Fog', "nuke.createNode('TX_Fog.gizmo')")
+nuke.menu('Nodes').addCommand('TX_HueKeyer', "nuke.createNode('TX_HueKeyer.gizmo')")
 
 ############################################################################################################
 ############################################################################################################
