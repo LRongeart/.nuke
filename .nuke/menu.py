@@ -462,9 +462,11 @@ nuke.menu('Nodes').addCommand('Filter/OpticalZDefocus', "nuke.createNode('Optica
 ############################################################################################################
 
 #Add TX gizmos
-nuke.menu('Nodes').addCommand('TX_Bloom', "nuke.createNode('TX_Bloom.gizmo')")
-nuke.menu('Nodes').addCommand('TX_Fog', "nuke.createNode('TX_Fog.gizmo')")
-nuke.menu('Nodes').addCommand('TX_HueKeyer', "nuke.createNode('TX_HueKeyer.gizmo')")
+keyerMenu = m.addMenu('TX_Tools', icon = 'ToolbarKeyer.png', index = 70)
+
+nuke.menu('Nodes').addCommand('TX_Tools/TX_Bloom', "nuke.createNode('TX_Bloom.gizmo')")
+nuke.menu('Nodes').addCommand('TX_Tools/TX_Fog', "nuke.createNode('TX_Fog.gizmo')")
+nuke.menu('Nodes').addCommand('TX_Tools/TX_HueKeyer', "nuke.createNode('TX_HueKeyer.gizmo')")
 
 ############################################################################################################
 ############################################################################################################
