@@ -61,6 +61,8 @@ nuke.pluginAddPath("./user", addToSysPath=False)
 nuke.pluginAddPath("caravr", addToSysPath=False)
 nuke.pluginAddPath("air", addToSysPath=False)
 
+nuke.pluginAddPath(r"Expression", addToSysPath=False)
+
 execdir = os.path.dirname(sys.executable)
 sys.path.append(execdir + "/plugins/modules")
 
