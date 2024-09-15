@@ -16,9 +16,21 @@ import nuke_internal as nuke
 import threading
 import knobdefaults
 
+execdir = os.path.dirname(sys.executable)
+sys.path.append(execdir + "/plugins/modules")
+
 # necessary to allow dll imports from plugins. only needed on Windows
 if os.name == 'nt':
   os.environ['PATH'] += os.path.pathsep + os.path.join(os.path.dirname(__file__), "..")
+
+#________________________________________________________________________#
+#OCIO Overrides at startup
+nuke.knobDefault('Root.colorManagement', 'OCIO')
+nuke.knobDefault('Root.OCIO_config', 'custom')
+defaultConfig = os.environ.get('OCIO', os.environ.get("NUKE_PATH") + '/aces_SHOW/config.ocio')
+nuke.knobDefault('Root.customOCIOConfigPath', defaultConfig)
+#________________________________________________________________________#
+
 
 # FIXME: import nuke does not yet support OCIO which is required by the
 #        default ViewerProcesses
@@ -57,14 +69,10 @@ for location in nuke.pluginInstallLocation():
       nuke.pluginAddPath(root, addToSysPath=False)
 
 nuke.pluginAddPath("./user", addToSysPath=False)
-
 nuke.pluginAddPath("caravr", addToSysPath=False)
 nuke.pluginAddPath("air", addToSysPath=False)
-
 nuke.pluginAddPath(r"Expression", addToSysPath=False)
 
-execdir = os.path.dirname(sys.executable)
-sys.path.append(execdir + "/plugins/modules")
 
 knobdefaults.initKnobDefaults()
 
@@ -140,6 +148,7 @@ nuke.addSequenceFileExtension("yuv");
 nuke.addSequenceFileExtension("xpm");
 nuke.addSequenceFileExtension("");
 
+
 # Pickle support
 
 class __node__reduce__():
@@ -157,6 +166,7 @@ class __group__reduce__():
     for i in range(g.inputs()): g.setInput(0, None)
     g.autoplace()
 __group__reduce = __group__reduce__()
+
 
 
 # Define image formats:
