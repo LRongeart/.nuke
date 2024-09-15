@@ -19,7 +19,6 @@
 | GITHUB    | `gizmo` -- [https://github.com/LRongeart/NUKEutilities/tree/main/gizmo](https://github.com/LRongeart/NUKEutilities/tree/main/gizmo)\
 | GITHUB    | `misc` -- [https://github.com/LRongeart/NUKEutilities/tree/main/misc](https://github.com/LRongeart/NUKEutilities/tree/main/misc)\
 | GITHUB    | `nk_OUT_ETALO` -- [https://github.com/LRongeart/NUKEutilities/tree/main/nk_OUT_ETALO](https://github.com/LRongeart/NUKEutilities/tree/main/nk_OUT_ETALO)\
-| GITHUB    | `ocio/aces_SHOW` -- [https://github.com/LRongeart/NUKEutilities/tree/main/ocio/aces_SHOW](https://github.com/LRongeart/NUKEutilities/tree/main/ocio/aces_SHOW)\
 | GITHUB    | `pipeline` -- [https://github.com/LRongeart/NUKEutilities/tree/main/pipeline](https://github.com/LRongeart/NUKEutilities/tree/main/pipeline)\
 | GITHUB    | `tools` -- [https://github.com/LRongeart/NUKEutilities/tree/main/tools](https://github.com/LRongeart/NUKEutilities/tree/main/tools)
 
