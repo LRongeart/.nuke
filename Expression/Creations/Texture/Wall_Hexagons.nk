@@ -1,0 +1,149 @@
+set cut_paste_input [stack 0]
+version 15.1 v1
+Reformat {
+ inputs 0
+ type "to box"
+ box_width 1000
+ box_height {{box_width}}
+ box_fixed true
+ name Reformat5
+ selected true
+ xpos 5628
+ ypos 643
+}
+Flare {
+ position {{parent.Reformat5.box_width/2} {parent.Reformat5.box_width/2}}
+ radius {0 120 120}
+ size_mult 3.8
+ inner_color 1
+ vis_in 1.05
+ vis_out 1.105
+ vis_mask_size 1
+ corners 6
+ flattening 1
+ sharpness 1
+ name Flare2
+ selected true
+ xpos 5628
+ ypos 715
+}
+Crop {
+ box {532 84 1216 730}
+ reformat true
+ crop false
+ name Crop2
+ selected true
+ xpos 5628
+ ypos 787
+ disable true
+}
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name Shuffle5
+ tile_color 0x93000000
+ selected true
+ xpos 5628
+ ypos 811
+}
+Transform {
+ translate {65 -110}
+ rotate 30
+ scale 0.05
+ center {330.5 345.5}
+ shutteroffset centred
+ name Transform2
+ selected true
+ xpos 5628
+ ypos 835
+}
+Reformat {
+ type scale
+ scale 0.057
+ name Reformat6
+ selected true
+ xpos 5628
+ ypos 859
+ disable true
+}
+Expression {
+ expr3 "(r || g || b) != 0 ? 1 : 0"
+ name Expression2
+ selected true
+ xpos 5628
+ ypos 883
+}
+Shuffle {
+ red alpha
+ green alpha
+ blue alpha
+ name Shuffle6
+ tile_color 0xffffffff
+ selected true
+ xpos 5628
+ ypos 907
+}
+Expression {
+ inputs 0
+ temp_name0 offsetX
+ temp_expr0 50
+ temp_name1 offsetY
+ temp_expr1 50
+ expr0 "fmod(x+50/2,offsetY)==0?((y)%100)/100 == 0?random:0:0"
+ name Expression13
+ selected true
+ xpos 5628
+ ypos 523
+}
+push $cut_paste_input
+Expression {
+ temp_name0 offsetX
+ temp_expr0 50
+ temp_name1 offsetY
+ temp_expr1 50
+ expr0 "fmod(x,offsetY)==0?((y+50)%100)/100 == 0?random:0:0"
+ name Expression10
+ selected true
+ xpos 5738
+ ypos 523
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ selected true
+ xpos 5738
+ ypos 594
+}
+Dilate {
+ size 1
+ name Dilate2
+ label "\[value size]"
+ selected true
+ xpos 5738
+ ypos 633
+}
+Grade {
+ white 220
+ name Grade2
+ selected true
+ xpos 5738
+ ypos 714
+}
+Convolve2 {
+ inputs 2
+ useGPUIfAvailable false
+ use_input_channels true
+ name Convolve1
+ selected true
+ xpos 5738
+ ypos 903
+}
+Dilate {
+ size 2
+ name Dilate4
+ label "\[value size]"
+ selected true
+ xpos 5738
+ ypos 935
+}

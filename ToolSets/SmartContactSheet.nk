@@ -1,0 +1,13 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+ContactSheet {
+ width {{input.width*columns}}
+ height {{input.height*rows}}
+ rows 1
+ columns {{"\[expr \{int(  \[numvalue inputs]  )\} ]"}}
+ name SmartContactSheet
+ selected true
+ xpos 1379
+ ypos -1915
+}

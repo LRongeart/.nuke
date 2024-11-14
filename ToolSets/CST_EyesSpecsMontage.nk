@@ -1,0 +1,527 @@
+set cut_paste_input [stack 0]
+version 13.0 v4
+push $cut_paste_input
+Dot {
+ name Dot147
+ selected true
+ xpos 40026
+ ypos -11253
+ hide_input true
+}
+Cryptomatte {
+ pickerAdd {0 0 0 0 0 0 0 0}
+ lastSelectedCryptoLayerName identifier_object
+ name Cryptomatte6
+ label EyeR
+ selected true
+ xpos 39992
+ ypos -11223
+}
+Dot {
+ inputs 0
+ name Dot149
+ selected true
+ xpos 39843
+ ypos -11162
+}
+set Na3e6b400 [stack 0]
+Dot {
+ inputs 0
+ name Dot150
+ selected true
+ xpos 40233
+ ypos -11162
+ hide_input true
+}
+push $cut_paste_input
+Dot {
+ name Dot148
+ selected true
+ xpos 40153
+ ypos -11254
+ hide_input true
+}
+Cryptomatte {
+ pickerAdd {0 0 0 0 0 0 0 0}
+ lastSelectedCryptoLayerName identifier_object
+ name Cryptomatte7
+ label EyeL
+ selected true
+ xpos 40119
+ ypos -11224
+}
+Group {
+ inputs 4
+ name CST_Eyes_Reflection1
+ tile_color 0x939393ff
+ selected true
+ xpos 40050
+ ypos -11165
+ addUserKnob {20 User}
+ addUserKnob {26 ""}
+ addUserKnob {26 _1 l "" +STARTLINE T "Reflections Transformations :\n"}
+ addUserKnob {26 ""}
+ addUserKnob {20 _2 l "Left Eye" n 1}
+ addUserKnob {41 translate T Transform4.translate}
+ addUserKnob {41 scale T Transform4.scale}
+ addUserKnob {41 rotate T Transform4.rotate}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 _4 l "" +STARTLINE T "  "}
+ addUserKnob {20 _3 l "Right Eye" n 1}
+ addUserKnob {41 translate_1 l translate T Transform2.translate}
+ addUserKnob {41 scale_1 l scale T Transform2.scale}
+ addUserKnob {41 rotate_1 l rotate T Transform2.rotate}
+ addUserKnob {20 endGroup_1 n -1}
+ addUserKnob {26 ""}
+ addUserKnob {6 stchan l "Use _st in Img Input" t "Check this to use the _st channel in the Img Input" +STARTLINE}
+ addUserKnob {68 result l Result M {"Reflections over Img" "Reflections Only" ""}}
+ result "Reflections Only"
+}
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "_St already in Img channels"
+  note_font "Verdana Bold"
+  xpos 341
+  ypos 624
+ }
+ Input {
+  inputs 0
+  name EyeMaskRight
+  xpos 698
+  ypos 1168
+  number 3
+ }
+ Dot {
+  name Dot1
+  tile_color 0xff00ff
+  xpos 732
+  ypos 1241
+ }
+ Dot {
+  name Dot2
+  xpos 732
+  ypos 1295
+ }
+set N96ea3400 [stack 0]
+ Erode {
+  size 1.1
+  name Erode1
+  xpos 698
+  ypos 1365
+ }
+set N96ea3000 [stack 0]
+push $N96ea3000
+push $N96ea3400
+ Input {
+  inputs 0
+  name Img
+  xpos 164
+  ypos 268
+  number 2
+ }
+ Dot {
+  name Dot255
+  xpos 198
+  ypos 529
+ }
+set N96ea2800 [stack 0]
+ Input {
+  inputs 0
+  name __st
+  xpos 401
+  ypos 269
+  number 1
+ }
+ Dot {
+  name Dot254
+  xpos 435
+  ypos 529
+ }
+push $N96ea2800
+add_layer {__st __st.red __st.green __st.blue}
+ Copy {
+  inputs 2
+  from0 -rgba.alpha
+  to0 -rgba.alpha
+  channels __st
+  name Copy14
+  xpos 282
+  ypos 514
+ }
+ Dot {
+  name Dot6
+  xpos 316
+  ypos 629
+ }
+ Switch {
+  inputs 2
+  which {{parent.stchan}}
+  name Switch1
+  tile_color 0xff00ff
+  label "\[if \{\[value which]==\"1\"\} \{return \"\[knob this.tile_color 0xff000000]\"\} \{return \"\[knob this.tile_color 0xff00ff]\"\}]"
+  xpos 164
+  ypos 626
+ }
+ Dot {
+  name Dot4
+  xpos 198
+  ypos 689
+ }
+set N96ea1000 [stack 0]
+ Dot {
+  name Dot5
+  xpos 458
+  ypos 689
+ }
+ Radial {
+  inputs 0
+  area {948.7999878 1379.599976 1041.400024 1487.199951}
+  softness 0.17
+  name Radial1
+  xpos -238
+  ypos 1100
+  disable true
+ }
+ Glint {
+  length 315
+  aspect 0.745
+  oddlen 1.22
+  rotation 94
+  from_color 0.66
+  steps 7
+  tolerance 0.11
+  gamma 1.87
+  name Glint1
+  xpos -238
+  ypos 1150
+  disable true
+ }
+ Glint {
+  length 315
+  oddlen 1.22
+  steps 7
+  name Glint2
+  xpos -238
+  ypos 1202
+  disable true
+ }
+ Grade {
+  whitepoint 0.105
+  name Grade1
+  xpos -238
+  ypos 1258
+  disable true
+ }
+ Transform {
+  translate {-152.5 -121}
+  scale 0.3919999897
+  center {992.5 1434}
+  name Transform1
+  xpos -238
+  ypos 1292
+  disable true
+ }
+ Reformat {
+  inputs 0
+  format "1024 1024 0 0 1024 1024 1 square_1K"
+  name Reformat1
+  xpos -119
+  ypos 1159
+ }
+ Radial {
+  area {0 0 1024 1024}
+  softness 0.17
+  name Radial2
+  xpos -119
+  ypos 1202
+ }
+ Transform {
+  translate {65 59}
+  scale 0.2
+  center {512 512}
+  name Transform2
+  xpos -119
+  ypos 1243
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos -119
+  ypos 1292
+ }
+ STMap {
+  inputs 2+1
+  uv __st
+  name STMap1
+  xpos 424
+  ypos 1286
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos 424
+  ypos 1337
+  disable true
+ }
+ Merge2 {
+  inputs 2
+  operation mask
+  name Merge4
+  xpos 424
+  ypos 1390
+ }
+ Premult {
+  name Premult1
+  xpos 424
+  ypos 1427
+ }
+ Dot {
+  name Dot3
+  xpos 458
+  ypos 1496
+ }
+ Input {
+  inputs 0
+  name EyeMaskLeft
+  xpos 676
+  ypos 741
+ }
+ Dot {
+  name Dot251
+  tile_color 0xff00ff
+  xpos 710
+  ypos 802
+ }
+ Dot {
+  name Dot253
+  xpos 710
+  ypos 856
+ }
+set N890a3c00 [stack 0]
+ Erode {
+  size 1.1
+  name Erode11
+  xpos 676
+  ypos 926
+ }
+set N890a3800 [stack 0]
+push $N890a3800
+push $N890a3c00
+push $N96ea1000
+ Radial {
+  inputs 0
+  area {948.7999878 1379.599976 1041.400024 1487.199951}
+  softness 0.17
+  name Radial4
+  xpos -239
+  ypos 661
+  disable true
+ }
+ Glint {
+  length 315
+  aspect 0.745
+  oddlen 1.22
+  rotation 94
+  from_color 0.66
+  steps 7
+  tolerance 0.11
+  gamma 1.87
+  name Glint3
+  xpos -239
+  ypos 711
+  disable true
+ }
+ Glint {
+  length 315
+  oddlen 1.22
+  steps 7
+  name Glint4
+  xpos -239
+  ypos 763
+  disable true
+ }
+ Grade {
+  whitepoint 0.105
+  name Grade57
+  xpos -239
+  ypos 819
+  disable true
+ }
+ Transform {
+  translate {-152.5 -121}
+  scale 0.3919999897
+  center {992.5 1434}
+  name Transform18
+  xpos -239
+  ypos 853
+  disable true
+ }
+ Reformat {
+  inputs 0
+  format "1024 1024 0 0 1024 1024 1 square_1K"
+  name Reformat2
+  xpos -120
+  ypos 673
+ }
+ Radial {
+  area {0 0 1024 1024}
+  softness 0.17
+  name Radial5
+  xpos -120
+  ypos 722
+ }
+ Transform {
+  translate {65 59}
+  scale 0.2
+  center {512 512}
+  name Transform4
+  xpos -120
+  ypos 786
+ }
+ Merge2 {
+  inputs 2
+  name Merge99
+  xpos -120
+  ypos 853
+ }
+ STMap {
+  inputs 2+1
+  uv __st
+  name STMap3
+  xpos 164
+  ypos 847
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy15
+  xpos 164
+  ypos 901
+  disable true
+ }
+ Merge2 {
+  inputs 2
+  operation mask
+  name Merge5
+  xpos 164
+  ypos 948
+ }
+ Premult {
+  name Premult8
+  xpos 164
+  ypos 988
+ }
+ Dot {
+  name Dot256
+  xpos 198
+  ypos 1036
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge2
+  xpos 164
+  ypos 1493
+ }
+ Premult {
+  name Premult2
+  xpos 164
+  ypos 1547
+ }
+set N6557b000 [stack 0]
+ Dot {
+  name Dot9
+  xpos 304
+  ypos 1550
+ }
+ Dot {
+  name Dot10
+  xpos 304
+  ypos 1820
+ }
+push $N96ea2800
+ Dot {
+  name Dot11
+  xpos 85
+  ypos 529
+ }
+ Dot {
+  name Dot7
+  xpos 85
+  ypos 1646
+ }
+set N6557a000 [stack 0]
+ Dot {
+  name Dot8
+  xpos 85
+  ypos 1706
+ }
+push $N6557b000
+push $N6557a000
+ Merge2 {
+  inputs 2
+  name Merge3
+  xpos 164
+  ypos 1643
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy2
+  xpos 164
+  ypos 1697
+ }
+ Switch {
+  inputs 2
+  which {{parent.result}}
+  name Switch2
+  tile_color 0xff00ff
+  label "\[if \{\[value which]==\"1\"\} \{return \"\[knob this.tile_color 0xff000000]\"\} \{return \"\[knob this.tile_color 0xff00ff]\"\}]"
+  xpos 164
+  ypos 1817
+ }
+ Output {
+  name Output1
+  xpos 164
+  ypos 1991
+ }
+end_group
+Dot {
+ name Dot151
+ selected true
+ xpos 40084
+ ypos -11079
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0.9345203638 0.8291392326 0.8256167173 1}
+ color_panelDropped true
+ name Constant1
+ selected true
+ xpos 39635
+ ypos -11160
+}
+Shuffle2 {
+ fromInput1 {{0} B}
+ fromInput2 {{0} B}
+ mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 white -1 -1 rgba.alpha 0 3"
+ name Shuffle45
+ label "\[value in1]"
+ selected true
+ xpos 39635
+ ypos -11088
+}
+push $Na3e6b400
+Merge2 {
+ inputs 2+1
+ name Merge43
+ selected true
+ xpos 39809
+ ypos -11082
+}
