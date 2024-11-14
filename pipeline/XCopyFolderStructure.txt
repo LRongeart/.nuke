@@ -1,1 +1,0 @@
-Xcopy \\tls-storage02\Prod\JOHANNE\05_SHOT\JOH_Seq06_Arrivee_Leon D:\JOHANNE\05_SHOT\JOH_Seq06_Arrivee_Leon /T /E /W /F

@@ -1,9 +1,0 @@
-set cut_paste_input [stack 0]
-version 13.2 v3
-push $cut_paste_input
-NST_vibrance {
- name NST_vibrance1
- selected true
- xpos -258
- ypos -36
-}

@@ -1,0 +1,20 @@
+NoOp {
+ name Rm_Gui
+ tile_color 0x2b0000ff
+ note_font Verdana
+ selected true
+ xpos 696
+ ypos -1057
+ hide_input true
+ addUserKnob {20 Rm_Guibytype}
+ addUserKnob {26 vectorBlur l VectorBlur}
+ addUserKnob {22 enable_v l Enable T "n = nuke.allNodes()\n\nfor vec in n:\n    if vec.Class() == \"VectorBlur2\":\n        vec.knob('postage_stamp').setValue(False)\n        vec.knob(\"disable\").clearAnimated()\n        vec.knob(\"disable\").setValue(False)\n\n\n" +STARTLINE}
+ addUserKnob {22 disable_v_1 l Disable -STARTLINE T "n = nuke.allNodes()\n\nfor vec in n:\n    if vec.Class() == \"VectorBlur2\":\n        vec.knob('postage_stamp').setValue(False)\n        vec.knob(\"disable\").clearAnimated()\n        vec.knob(\"disable\").setValue('1')\n\n\n"}
+ addUserKnob {22 gui_on_v l Gui_On T "n = nuke.allNodes()\n\nfor vec in n:\n    if vec.Class() == \"VectorBlur2\":\n        vec.knob('postage_stamp').setValue(True)\n        vec.knob(\"disable\").setExpression('\$gui')\n\n" +STARTLINE}
+ addUserKnob {22 gui_off_v l Gui_Off -STARTLINE T "n = nuke.allNodes()\n\nfor vec in n:\n    if vec.Class() == \"VectorBlur2\":\n        vec.knob('postage_stamp').setValue(False)\n        vec.knob(\"disable\").setExpression('0')\n"}
+ addUserKnob {26 zdefocus l ZDefocus}
+ addUserKnob {22 enable l Enable T "n = nuke.allNodes()\n\nfor z in n:\n    if z.Class() == \"ZDefocus2\":\n        z.knob('postage_stamp').setValue(False)\n        z.knob(\"disable\").clearAnimated()\n        z.knob(\"disable\").setValue(False)\n" +STARTLINE}
+ addUserKnob {22 disable_v l Disable -STARTLINE T "n = nuke.allNodes()\n\nfor vec in n:\n    if vec.Class() == \"ZDefocus2\":\n        vec.knob('postage_stamp').setValue(False)\n        vec.knob(\"disable\").clearAnimated()\n        vec.knob(\"disable\").setValue('0')\n\n\n"}
+ addUserKnob {22 gui_on_z l Gui_On T "n = nuke.allNodes()\n\nfor z in n:\n    if z.Class() == \"ZDefocus2\":\n        z.knob('postage_stamp').setValue(True)\n        z.knob(\"disable\").setExpression('\$gui')" +STARTLINE}
+ addUserKnob {22 gui_off_z l Gui_Off -STARTLINE T "n = nuke.allNodes()\n\nfor z in n:\n    if z.Class() == \"ZDefocus2\":\n        z.knob('postage_stamp').setValue(False)\n        z.knob(\"disable\").setExpression('0')"}
+}
