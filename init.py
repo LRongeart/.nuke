@@ -27,8 +27,9 @@ if os.name == 'nt':
 # OCIO Overrides at startup
 nuke.knobDefault('Root.colorManagement', 'OCIO')
 nuke.knobDefault('Root.OCIO_config', 'aces_1.2')
-defaultConfig = os.environ.get('OCIO', os.environ.get("NUKE_PATH") + '/aces_SHOW/config.ocio')
+defaultConfig = os.environ.get('OCIO', '')
 nuke.knobDefault('Root.customOCIOConfigPath', defaultConfig)
+nuke.knobDefault('Root.monitorOutLUT', defaultConfig)
 # ------------------------------------------------------------------------- #   
 
 
@@ -196,9 +197,12 @@ if nuke.usingPerformanceTimers():
 # PropertiesMaxPanels at 1 Max
 nuke.knobDefault("Properties.maxPanels", "1")
 
-# Shuffle Label to display Channel Input name
+# Shuffle Label to display Channel Input name in White
 nuke.knobDefault("Shuffle2.label", "[value in1]")
 nuke.knobDefault("Shuffle2.note_font_color", "0x3fffff")
+
+# Copy Label to display Channel Input name in White
+nuke.knobDefault("Copy.note_font_color", "0x3fffff")
 
 # Switch Label to display Channel Input name
 nuke.knobDefault("Switch.label", "[value which]")

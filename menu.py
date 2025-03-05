@@ -68,6 +68,14 @@ m.addCommand("Documentation", "openNSTDocumentation()", icon="info_icon.png", in
 ############################################################################################################
 ############################################################################################################
 
+#Create RotoPaintBrush to 'Draw' Menu
+nuke.menu('Nodes').addCommand('Draw/RotoPaintBrush', "nuke.createNode('RotoPaintBrush.gizmo')", icon='RotoPaintBrush.png')
+#nuke.menu('Nodes').addCommand('Channel/Connect', "nuke.createNode('Connect.gizmo')", icon='Connect.png')
+
+
+############################################################################################################
+############################################################################################################
+
 
 # Create Image Menu
 imageMenu = m.addMenu('Image', icon = 'ToolbarImage.png', index = 10)
@@ -208,6 +216,13 @@ drawMenu.addCommand("LensEngine KB", "nuke.createNode('{}LensEngine')".format(pr
 
 # Add 'Connect.gizmo' to Channel menu;
 nuke.menu('Nodes').addCommand('Channel/Connect', "nuke.createNode('Connect.gizmo')", icon='Connect.png')
+
+############################################################################################################
+############################################################################################################
+
+#Add LR_AnimProject3D
+nuke.menu('Nodes').addCommand('3D/LR_AnimProject3D', "nuke.createNode('LR_AnimProject3D.gizmo')")
+nuke.menu('Nodes').addCommand('3D/LR_StaticProject3D', "nuke.createNode('LR_StaticProject3D.gizmo')")
 
 ############################################################################################################
 ############################################################################################################
