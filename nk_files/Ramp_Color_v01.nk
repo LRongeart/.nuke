@@ -1,0 +1,167 @@
+#! C:/Program Files/Nuke14.0v5/nuke-14.0.5.dll -nx
+version 14.0 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="5" y="0" w="2557" h="1008" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="806" stretch="1"/>
+            <splitter orientation="2">
+                <split size="567"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                    <page id="Viewer.2"/>
+                </dock>
+                <split size="399"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="870"/>
+            <dock id=""/>
+            <split size="829"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/nk_files/Ramp_Color_v01.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath //tls-storage02/Install/NUKE/Nuke_PLUG/aces_SHOW/config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut "sRGB (ACES)"
+ monitorOutLUT "show_acescg_view (ACES)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+}
+Group {
+ inputs 0
+ name Ramp_Color
+ tile_color 0xc0ff00ff
+ note_font "Verdana Bold"
+ xpos 322
+ ypos 8
+ addUserKnob {20 User}
+ addUserKnob {41 format l "output format" T Reformat1.format}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 color l "p0 Color" T Constant1.color}
+ addUserKnob {41 color_1 l "p1 Color" T Constant2.color}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 p0 l "point 0" T Ramp1.p0}
+ addUserKnob {41 p1 l "point 1" T Ramp1.p1}
+ addUserKnob {41 type T Ramp1.type}
+ addUserKnob {7 typeSmoothness R 0 500}
+ typeSmoothness 500
+}
+ Ramp {
+  inputs 0
+  p0 {0 0}
+  p1 {0 1556}
+  type smooth0
+  name Ramp1
+  xpos 205
+  ypos 65
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color {0 1 0 1}
+  color_panelDropped true
+  name Constant2
+  xpos -52
+  ypos -162
+ }
+ Expression {
+  expr3 "\[value parent.Constant2.color.a]"
+  name Expression1
+  xpos -52
+  ypos -74
+ }
+set Nbed00000 [stack 0]
+ Reformat {
+  name Reformat1
+  xpos -52
+  ypos -10
+ }
+ set C10ac4800 [stack 0]
+ Constant {
+  inputs 0
+  channels rgb
+  color {1 0 0 1}
+  color_panelDropped true
+  name Constant1
+  xpos 44
+  ypos -161
+ }
+ Expression {
+  expr3 "\[value parent.Constant1.color.a]"
+  name Expression2
+  xpos 44
+  ypos -78
+ }
+clone $C10ac4800 {
+  xpos 44
+  ypos -9
+  selected false
+ }
+ Merge2 {
+  inputs 2+1
+  operation atop
+  name Merge1
+  xpos 32
+  ypos 65
+ }
+ Soften {
+  channels rgb
+  amount 1
+  size {{parent.typeSmoothness*2 x1 0}}
+  name Soften1
+  xpos 32
+  ypos 89
+ }
+ Output {
+  name Output1
+  xpos 32
+  ypos 153
+ }
+clone $C10ac4800 {
+  inputs 0
+  xpos -188
+  ypos -9
+  selected false
+ }
+push $Nbed00000
+ Viewer {
+  frame_range 1-100
+  viewerProcess "show_acescg_view (ACES)"
+  name Viewer1
+  xpos -114
+  ypos 469
+ }
+end_group
+Viewer {
+ frame 1
+ frame_range 1-100
+ viewerProcess "show_acescg_view (ACES)"
+ name Viewer1
+ xpos 322
+ ypos 138
+}
