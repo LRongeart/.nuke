@@ -12,9 +12,17 @@
 
 
 ## A - GIZMO TABLE OF CONTENT
-| GITHUB    | `GIZMO_001` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_001](https://github.com/LRongeart/NUKEutilities/blob/6ef4f32d0838ead6a2cc6a15b979239144b9871b/gizmo/GIZMO_001)\
-| GITHUB    | `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_002](https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_002)\
-| GITHUB    | `GIZMO_002` -- [https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_003](https://github.com/LRongeart/NUKEutilities/gizmo/GIZMO_003)
+>All Nodes that can be create are located in the main 'nk_files' folder, either in .nk or .gizmo fileTypes. They are listed in the `menu.py` file.
+| GITHUB    | `GIZMO_TOOLKIT` Nuke Survival Toolkit -- [https://github.com/LRongeart/.nuke/tree/main/NukeSurvivalToolkit_publicRelease-2.1.1](https://github.com/LRongeart/.nuke/tree/main/NukeSurvivalToolkit_publicRelease-2.1.1)\ | Node list:
+| GITHUB    | `GIZMO_TOOLKIT` BL_ToolKit -- [https://github.com/LRongeart/.nuke/tree/main/nk_files](https://github.com/LRongeart/.nuke/tree/main/nk_files)\
+| GITHUB    | `GIZMO_TOOKIT` TX_ToolKit-- [https://github.com/LRongeart/.nuke/tree/main/nk_files](https://github.com/LRongeart/.nuke/tree/main/nk_files)\
+| GITHUB    | `GIZMO_TOOKIT` X_ToolKit-- [https://github.com/LRongeart/.nuke/tree/main/nk_files](https://github.com/LRongeart/.nuke/tree/main/nk_files)\
+
+OpticalZDefocus
+RotoPaintBrush
+WaterLens
+
+
 
 ## B - MISC TABLE OF CONTENT
 | GITHUB    | `MISC_001` -- [https://github.com/LRongeart/NUKEutilities/misc/MISC_001](https://github.com/LRongeart/NUKEutilities/misc/MISC_001)\
