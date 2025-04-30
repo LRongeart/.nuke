@@ -1,5 +1,5 @@
-#! C:/Program Files/Nuke13.1v2/nuke-13.1.2.dll -nx
-version 13.1 v2
+#! C:/Program Files/Nuke14.0v5/nuke-14.0.5.dll -nx
+version 14.0 v5
 Gizmo {
  inputs 2
  help "<b>OpticalZDefocus</b> is a physically accurate ZDefocus, which controls circle of confusion (coc) size based on lens geometry using the depth of field equation. \n\nSet your lens and film-back characteristics, your focus distance, and adjust the size of your bokeh with the aperture size, just like a real lens."
@@ -90,7 +90,7 @@ Gizmo {
   addUserKnob {6 constant_defocus t "Disables depth-varying defocus. \nBokeh size is directly controlled by max defocus." +STARTLINE}
   addUserKnob {6 use_camera_input l "use camera input" t "Creates a camera input pipe instead so that no user action is required." +STARTLINE}
  }
-set N4d165000 [stack 0]
+set N6a459400 [stack 0]
  Dot {
   name Dot7
   note_font_size 42
@@ -105,8 +105,8 @@ set N4d165000 [stack 0]
   xpos -576
   ypos 144
  }
-set N4d164800 [stack 0]
-push $N4d164800
+set N6a459c00 [stack 0]
+push $N6a459c00
  Copy {
   inputs 2
   from0 {{{CHANNEL_CHOOSER_DEPTH.Zchan}}}
@@ -136,7 +136,7 @@ push $N4d164800
   ypos 350
   disable {{!parent.invert_depth}}
  }
-set N65d8b800 [stack 0]
+set N6c116800 [stack 0]
  Multiply {
   channels rgb
   value {{"parent.depth_unit == 1 ? 10 : parent.depth_unit == 2 ? 100 : parent.depth_unit == 3 ? 1000 : parent.depth_unit == 4 ? 25.4 : parent.depth_unit == 5 ? 304.8 : 1"}}
@@ -179,7 +179,7 @@ set N65d8b800 [stack 0]
   xpos -542
   ypos 514
  }
-set N65d8ac00 [stack 0]
+set N6c117400 [stack 0]
  Dot {
   name Dot2
   note_font_size 42
@@ -259,8 +259,8 @@ set N65d8ac00 [stack 0]
   xpos 128
   ypos 594
  }
-push $N65d8ac00
-push $N4d165000
+push $N6c117400
+push $N6a459400
  Dot {
   name Dot4
   label " "
@@ -319,7 +319,7 @@ add_layer {opticalzdefocus opticalzdefocus.Z}
   xpos -308
   ypos 1230
  }
-push $N65d8b800
+push $N6c116800
  NoOp {
   name DepthSampler
   xpos -710

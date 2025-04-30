@@ -104,6 +104,8 @@ imageMenu.addCommand('LabelFromRead TL', "nuke.createNode('{}LabelFromRead')".fo
 ############################################################################################################
 ############################################################################################################
 
+#NUKE_SURVIVAL_TOOLKIT_GIZMOS
+
 # Create Draw Menu
 drawMenu = m.addMenu('Draw', icon = 'ToolbarDraw.png', index = 20)
 
@@ -229,6 +231,87 @@ drawMenu.addCommand('FlareSuperStar NKPD', "nuke.createNode('{}FlareSuperStar')"
 drawMenu.addCommand('AutoFlare NKPD', "NST_helper.filepathCreateNode('{}AutoFlare2')".format(prefixNST), icon="Flare.png")
 drawMenu.addCommand("BokehBuilder KB", "nuke.createNode('{}BokehBuilder')".format(prefixNST), icon="K_BokehBuilder.png")
 drawMenu.addCommand("LensEngine KB", "nuke.createNode('{}LensEngine')".format(prefixNST), icon="K_LensEngine.png")
+
+############################################################################################################
+############################################################################################################
+
+# Add /gizmos/bl_* nodes
+
+BL = m.addMenu('BL_Tools', icon = 'icons/BL.png', index = 30)
+nuke.menu('Nodes').addCommand('BL/bl_Arc', "nuke.createNode('bl_Arc.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_BlurChroma', "nuke.createNode('bl_BlurChroma.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Bokeh', "nuke.createNode('bl_Bokeh.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Bulge', "nuke.createNode('bl_Bulge.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Bytes', "nuke.createNode('bl_Bytes.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_ChannelBox', "nuke.createNode('bl_ChannelBox.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_ChromaticAberation', "nuke.createNode('bl_ChromaticAberation.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_CleanOUT', "nuke.createNode('bl_CleanOUT.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_ColorEdge', "nuke.createNode('bl_ColorEdge.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_ColorSupress', "nuke.createNode('bl_ColorSupress.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Compress', "nuke.createNode('bl_Compress.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Convolve', "nuke.createNode('bl_Convolve.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_CurveFilter', "nuke.createNode('bl_CurveFilter.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Despillator', "nuke.createNode('bl_Despillator.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_EdgeExtend2', "nuke.createNode('bl_EdgeExtend2.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Emboss', "nuke.createNode('bl_Emboss.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Expand', "nuke.createNode('bl_Expand.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Filler', "nuke.createNode('bl_Filler.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_GUISwitch', "nuke.createNode('bl_GUISwitch.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_HSVKeyer', "nuke.createNode('bl_HSVKeyer.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_IBlur', "nuke.createNode('bl_IBlur.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_IBokeh', "nuke.createNode('bl_IBokeh.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_IDilateErode', "nuke.createNode('bl_IDilateErode.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_IDisplace', "nuke.createNode('bl_IDisplace.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_ITime', "nuke.createNode('bl_ITime.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_LayerAE', "nuke.createNode('bl_LayerAE.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Line', "nuke.createNode('bl_Line.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Match', "nuke.createNode('bl_Match.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_mf_Binary', "nuke.createNode('bl_mf_Binary.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_mf_Border', "nuke.createNode('bl_mf_Border.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_mf_DirectionalBlur', "nuke.createNode('bl_mf_DirectionalBlur.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_mf_Occlusion', "nuke.createNode('bl_mf_Occlusion.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_mf_ShapeSofter', "nuke.createNode('bl_mf_ShapeSofter.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Monochrome', "nuke.createNode('bl_Monochrome.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Mosaic', "nuke.createNode('bl_Mosaic.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Normalizer', "nuke.createNode('bl_Normalizer.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Random', "nuke.createNode('bl_Random.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Randomizer', "nuke.createNode('bl_Randomizer.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Sample', "nuke.createNode('bl_Sample.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_SaturationRGB', "nuke.createNode('bl_SaturationRGB.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_ScanLines', "nuke.createNode('bl_ScanLines.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Scatterize', "nuke.createNode('bl_Scatterize.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Scroll', "nuke.createNode('bl_Scroll.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_SetBBOXColor', "nuke.createNode('bl_SetBBOXColor.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Shape', "nuke.createNode('bl_Shape.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Slice', "nuke.createNode('bl_Slice.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Solarize', "nuke.createNode('bl_Solarize.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_SpillSupress', "nuke.createNode('bl_SpillSupress.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Star', "nuke.createNode('bl_Star.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Threshold', "nuke.createNode('bl_Threshold.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_TileMosaic', "nuke.createNode('bl_TileMosaic.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_ToBBOX', "nuke.createNode('bl_ToBBOX.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Twirl', "nuke.createNode('bl_Twirl.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Wave', "nuke.createNode('bl_Wave.gizmo')")
+nuke.menu('Nodes').addCommand('BL/bl_Zebrafy', "nuke.createNode('bl_Zebrafy.gizmo')")
+
+
+############################################################################################################
+############################################################################################################
+
+# Add PxF .gizmos
+PxF_Tools = m.addMenu('PxF_Tools', icon = 'icons/PxF_Menu.png', index = 30)
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_Bandpass', "nuke.createNode('Pxf_Bandpass.gizmo')", icon='PxF_Bandpass.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_ChromaBlur', "nuke.createNode('PxF_ChromaBlur.gizmo')", icon='PxF_ChromaBlur.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_Distort', "nuke.createNode('Pxf_Distort.gizmo')", icon='PxF_Distort.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_Erode', "nuke.createNode('Pxf_Erode.gizmo')", icon='PxF_Erode.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_Filler', "nuke.createNode('Pxf_Filler.gizmo')", icon='PxF_Filler.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_Grain', "nuke.createNode('Pxf_Grain.gizmo')", icon='PxF_Grain.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_HueSat', "nuke.createNode('Pxf_HueSat.gizmo')", icon='PxF_HueSat.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_IDefocus', "nuke.createNode('Pxf_PxF_IDefocus.gizmo')", icon='PxF_PxF_IDefocus.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_KillSpill', "nuke.createNode('Pxf_KillSpill.gizmo')", icon='PxF_KillSpill.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_Line', "nuke.createNode('Pxf_Line.gizmo')", icon='PxF_Line.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_MergeWrap', "nuke.createNode('Pxf_MergeWrap.gizmo')", icon='PxF_MergeWrap.png')
+nuke.menu('Nodes').addCommand('PxF_Tools/PxF_ScreenClean', "nuke.createNode('Pxf_ScreenClean.gizmo')", icon='PxF_ScreenClean.png')
 
 ############################################################################################################
 ############################################################################################################
@@ -408,6 +491,7 @@ EdgesMenu.addCommand('KillOutline NKPD', "nuke.createNode('{}KillOutline')".form
 EdgesMenu.addCommand('ColorSmear NKPD', "nuke.createNode('{}ColorSmear')".format(prefixNST), icon="nukepedia_icon.png")
 EdgesMenu.addCommand('EdgeFromAlpha FR', "nuke.createNode('{}EdgeFromAlpha')".format(prefixNST), icon="nukepedia_icon.png")
 EdgesMenu.addCommand('VectorExtendEdge NKPD', "nuke.createNode('{}VectorExtendEdge')".format(prefixNST), icon="nukepedia_icon.png")
+EdgesMenu.addCommand('VectorFrameBlend NKPD', "nuke.createNode('VectorFrameBlend')".format(prefixNST), icon="nukepedia_icon.png")
 EdgesMenu.addSeparator()
 EdgesMenu.addCommand('FractalBlur NKPD', "nuke.createNode('{}FractalBlur')".format(prefixNST), icon="nukepedia_icon.png")
 
