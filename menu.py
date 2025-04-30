@@ -1,7 +1,5 @@
 #*****************************************************************
 #*****************************************************************
-# This file will setup the NukeSurvivalToolkit Menu on your Toolbar
-# Written by Tony Lyons 09/2020 | www.CreativeLyons.com | www.CompositingMentor.com
 #*****************************************************************
 #*****************************************************************
 
@@ -9,6 +7,10 @@ import nuke
 import sys
 import os
 import webbrowser
+import nuke
+import nukescripts
+import perf_time
+import perf_time_print
 
 # Add PluginPaths to tools and icons
 nuke.pluginAddPath('./gizmos')
@@ -16,6 +18,7 @@ nuke.pluginAddPath('./python')
 nuke.pluginAddPath('./icons')
 nuke.pluginAddPath('./images')
 nuke.pluginAddPath('./nk_files')
+nuke.pluginAddPath('./performanceTimers')
 
 # Import some helpful functions for the NST
 import NST_helper
@@ -39,6 +42,24 @@ NST_helpDoc = "NukeSurvivalToolkit_Documentation_Release_v2.1.0.pdf"
 NST_helpDoc_os_path = os.path.join(NST_FolderPath, NST_helpDoc)
 NST_helpDocPath = "file:///{}".format(NST_helpDoc_os_path)
 
+
+############################################################################################################
+############################################################################################################
+
+nuke_menu = nuke.menu('Nuke')
+split_nuke_menu = nuke_menu.addMenu('PerformanceTimers')
+split_nuke_menu.addCommand('Performance Timers', 'perf_time.show_panel()')
+split_nuke_menu.addCommand('Performance Timers Print', 'perf_time_print.pf_panel()')
+
+pane_menu = nuke.menu('Pane')
+pane_menu.addCommand('Performance Timers', perf_time.add_perf_time_panel)
+nukescripts.registerPanel('com.splitthediff.perfTime', perf_time.add_perf_time_panel)
+
+############################################################################################################
+############################################################################################################
+
+# Create KnobScripter Menu
+import KnobScripter
 
 ############################################################################################################
 ############################################################################################################
@@ -70,7 +91,6 @@ m.addCommand("Documentation", "openNSTDocumentation()", icon="info_icon.png", in
 
 #Create RotoPaintBrush to 'Draw' Menu
 nuke.menu('Nodes').addCommand('Draw/RotoPaintBrush', "nuke.createNode('RotoPaintBrush.gizmo')", icon='RotoPaintBrush.png')
-#nuke.menu('Nodes').addCommand('Channel/Connect', "nuke.createNode('Connect.gizmo')", icon='Connect.png')
 
 
 ############################################################################################################
@@ -79,7 +99,6 @@ nuke.menu('Nodes').addCommand('Draw/RotoPaintBrush', "nuke.createNode('RotoPaint
 
 # Create Image Menu
 imageMenu = m.addMenu('Image', icon = 'ToolbarImage.png', index = 10)
-
 imageMenu.addCommand('LabelFromRead TL', "nuke.createNode('{}LabelFromRead')".format(prefixNST), icon="LabelFromRead.png")
 
 ############################################################################################################

@@ -1,2 +1,165 @@
-<?xml version="1.0" encoding="UTF-8"?><script>nuke.pluginPath()
-</script>
+<?xml version="1.0" encoding="UTF-8"?><script>import nuke
+thisConnect = nuke.selectedNode()
+
+
+thisConnect.knob('knobChanged').setValue(autoUpdate)
+
+autoUpdate = &quot;&quot;&quot;
+targetResult()
+connect()
+inputVisibility()
+&quot;&quot;&quot;
+
+def targetResult(the_node=None, theknob=None):
+    # Update the info knob according to the Target search and return the matching result
+    targetResultText = &quot;Current target: &quot;
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()    
+    connectTarget = this_node.knob('Target').getValue()
+    
+    print (targetResultText+connectTarget)
+
+
+def inputVisibility(the_node=None, theknob=None):
+    # Updates the node HideInput based on 
+    inputVisibilityText = &quot;Connect HideInput set to: &quot;
+    visibleInput = &quot;Visible&quot;
+    hiddenInput = &quot;Hidden&quot;
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()
+    defaultVisibility = 0
+    inputVisibility = this_node.knob('visibleInput').getValue()
+    
+    this_node.knob('hide_input').setValue(inputVisibility-defaultVisibility)
+
+    print (&quot;The Connect inputVisibility has been changed.&quot;)
+    
+    if this.knob.name() in ('hideInput'):
+        if this_node.knob('hideInput').getValue() == &quot;0&quot;:
+            print (inputVisibilityText+visibleInput)
+        else:
+            print (inputVisibilityText+hiddenInput)
+
+
+def connect(the_node=None, theknob=None):
+    # Connect
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()
+
+    if this_knob.name() in (&quot;hide_input_1&quot;, &quot;Target&quot;):
+        if this_node.knob('Target').getValue() == &quot;TGT_NAME&quot;:
+            print(&quot;Current target: Default Target&quot;)
+        else:
+            inputNode = nuke.thisNode()
+            n = nuke.thisNode().knob('Target').getValue()
+            tgt = nuke.toNode(n)
+            inputNode.setInput(0,tgt)
+    print(&quot;The Connect node has been changed.&quot;)
+</script><script>import nuke
+thisConnect = nuke.selectedNode()
+
+
+thisConnect.knob('knobChanged').setValue(autoUpdate)
+
+autoUpdate = &quot;&quot;&quot;
+targetResult()
+connect()
+inputVisibility()
+&quot;&quot;&quot;
+
+def targetResult(the_node=None, theknob=None):
+    # Update the info knob according to the Target search and return the matching result
+    targetResultText = &quot;Current target: &quot;
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()    
+    connectTarget = this_node.knob('Target').getValue()
+    
+    print (targetResultText+connectTarget)
+
+
+def inputVisibility(the_node=None, theknob=None):
+    # Updates the node HideInput based on 
+    inputVisibilityText = &quot;Connect HideInput set to: &quot;
+    visibleInput = &quot;Visible&quot;
+    hiddenInput = &quot;Hidden&quot;
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()
+    defaultVisibility = 0
+    inputVisibility = this_node.knob('visibleInput').getValue()
+    
+    this_node.knob('hide_input').setValue(inputVisibility-defaultVisibility)
+
+    print (&quot;The Connect inputVisibility has been changed.&quot;)
+    
+    if this_knob.name() in ('hideInput'):
+        if this_node.knob('hideInput').getValue() == &quot;0&quot;:
+            print (inputVisibilityText+visibleInput)
+        else:
+            print (inputVisibilityText+hiddenInput)
+
+
+def connect(the_node=None, theknob=None):
+    # Connect
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()
+
+    if this_knob.name() in (&quot;hide_input_1&quot;, &quot;Target&quot;):
+        if this_node.knob('Target').getValue() == &quot;TGT_NAME&quot;:
+            print(&quot;Current target: Default Target&quot;)
+        else:
+            inputNode = nuke.thisNode()
+            n = nuke.thisNode().knob('Target').getValue()
+            tgt = nuke.toNode(n)
+            inputNode.setInput(0,tgt)
+    print(&quot;The Connect node has been changed.&quot;)
+</script><script>import nuke
+    # nuke variables to get the selected node, for callBacks &amp; all functions :)
+thisConnect = nuke.selectedNode()
+
+    # Get CallBacks from selectedNode at each knobChanged event
+thisConnect.knob('knobChanged').setValue(autoUpdate)
+
+
+autoUpdate = &quot;&quot;&quot;
+targetResult()
+connect()
+inputVisibility()
+&quot;&quot;&quot;
+
+def targetResult(the_node=None, theknob=None):
+    # Update the target knob info according to the Target search and return the matching result;
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()
+    targetResultText = &quot;Current target: &quot;   
+    connectTarget = this_node.knob('Target').getValue()
+    
+    print (targetResultText+connectTarget)
+
+
+def inputVisibility(the_node=None, theknob=None):
+    # Updates the node HideInput based on the visibleInput checkBox;
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()
+    inputVisibilityText = &quot;Connect HideInput set to: &quot;
+    visibleInput = &quot;Visible&quot;
+    hiddenInput = &quot;Hidden&quot;
+    defaultVisibility = 1
+    inputVisibility = this_node.knob('visibleInput').getValue()
+    
+    this_node.knob('hide_input').setValue(inputVisibility-defaultVisibility)
+
+
+def connect(the_node=None, theknob=None):
+    # Connects Live the node to the Target Input based on the Target string;
+    this_node = nuke.thisNode()
+    this_knob = nuke.thisKnob()
+    if this_knob.name() in (&quot;hide_input_1&quot;, &quot;Target&quot;):
+        if this_node.knob('Target').getValue() == &quot;TGT_NAME&quot;:
+            print(&quot;Current target: Default Target&quot;)
+        else:
+            inputNode = nuke.thisNode()
+            n = nuke.thisNode().knob('Target').getValue()
+            tgt = nuke.toNode(n)
+            inputNode.setInput(0,tgt)
+    print(&quot;The Connect node has been changed.&quot;)
+</script><script></script>
