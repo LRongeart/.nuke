@@ -37,5 +37,10 @@
 | CONTACT     | `Author E-Mail` -- loucas.rongeart@gmail.com\
 | CONTACT     | `Author DiscordID` -- LRongeart
 
-[^1]: Sources --
+[^1]: Sources
+`Plugin` Stamps - https://adrianpueyo.com/stamps/
+`Plugin` PerformanceTimers - https://splitthediff.com/performance-timers/
+`Plugin` KnobScripter - https://adrianpueyo.com/knobscripter/
+`Nodes` PxF_ToolKit nodes  - https://pixelfudger.com/pixelfudger-suite
+`Nodes` BL_Toolkit nodes - https://www.nukepedia.com/gizmos/other/bl-library
 
