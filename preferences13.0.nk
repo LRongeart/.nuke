@@ -1,8 +1,0 @@
-Preferences {
- inputs 0
- name Preferences
- selectedGPUDeviceName "NVIDIA GeForce GTX 1070"
- platformPathRemaps ""
- maxPanels 1
- defaultFlipbook "Flipbook Viewer"
-}

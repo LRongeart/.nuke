@@ -1,8 +1,0 @@
-Preferences {
- inputs 0
- name Preferences
- selectedGPUDeviceName "NVIDIA GeForce RTX 2060"
- platformPathRemaps ""
- maxPanels 1
- defaultFlipbook "Flipbook Viewer"
-}
