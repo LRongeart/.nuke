@@ -4,8 +4,9 @@ Preferences {
  selectedGPUDeviceName "NVIDIA GeForce RTX 2060"
  platformPathRemaps ""
  maxPanels 1
+ ShadeDAGNodes false
  ArrowColorLeft 0xff0000ff
- ArrowColorRight 0xff00ff
+ ArrowColorRight 0xbbffff
  ArrowColorUp 0xff00ffff
  ArrowColorDown 0xff00ff
  dot_node_scale 2

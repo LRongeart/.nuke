@@ -9,46 +9,73 @@
 #   init.py
 #   menu.py
 # _pathsetup has to be first since it sets up the paths to be able to 'import nuke'.
+#___________________________________________________________________________________________________________
 
+
+#=*=*=*=*=*=*=*=*=*=*
+#_[]_INITIALISATION 
+#
 import sys
 import os.path
 import nuke_internal as nuke
+import nuke
 import threading
 import knobdefaults
+import time
+import socket
+#___________________________________________________________________________________________________________
 
-execdir = os.path.dirname(sys.executable)
-sys.path.append(execdir + "/plugins/modules")
 
-# necessary to allow dll imports from plugins. only needed on Windows
-if os.name == 'nt':
-  os.environ['PATH'] += os.path.pathsep + os.path.join(os.path.dirname(__file__), "..")
-
-# ------------------------------------------------------------------------- #   
-# OCIO Overrides at startup
+#====================  
+#_[]_OCIO_OVERRIDES_AT_STARTUP
+#
 nuke.knobDefault('Root.colorManagement', 'OCIO')
 nuke.knobDefault('Root.OCIO_config', 'aces_1.2')
 defaultConfig = os.environ.get('OCIO', '')
 nuke.knobDefault('Root.customOCIOConfigPath', defaultConfig)
 nuke.knobDefault('Root.monitorOutLUT', defaultConfig)
-# ------------------------------------------------------------------------- #   
 
-
-# FIXME: import nuke does not yet support OCIO which is required by the
-#        default ViewerProcesses
+# OCIO fixMe default ViewerProcess
 ocioSupported = not nuke.env["ExternalPython"]
 if ocioSupported :
   import nukescripts.ViewerProcess
+#___________________________________________________________________________________________________________ 
 
+
+#==================== 
+#_[]_MODULES_FOLDER_INTEGRATION 
+#
+execdir = os.path.dirname(sys.executable)
+sys.path.append(execdir + "/plugins/modules")
+#___________________________________________________________________________________________________________
+
+
+#==================== 
+#_[]_PLUGIN_DLL_IMPORT - only needed on Windows 
+# 
+if os.name == 'nt':
+  os.environ['PATH'] += os.path.pathsep + os.path.join(os.path.dirname(__file__), "..")
+#___________________________________________________________________________________________________________  
+
+
+#==================== 
+#_[]_UTF-8_STRING_OVERRIDE
 # always use utf-8 for all strings
 if hasattr(sys, "setdefaultencoding"):
   sys.setdefaultencoding("utf_8")
+#___________________________________________________________________________________________________________  
 
+
+#==================== 
+#_[]_FINISHED_THREAD_CALLBACK
 def threadendcallback():
   return nuke.waitForThreadsToFinish()
-
 threading.currentThread().waitForThreadsOnExitFunc = threadendcallback
+#___________________________________________________________________________________________________________
 
-# NUKE_TEMP_DIR is initialized in _pathsetup.py
+
+#====================
+#_[]_NUKE_TEMP_DIR_OVERRIDE to _pathsetup.py
 try:
   nuke_temp_dir = os.environ["NUKE_TEMP_DIR"]
 except:
@@ -73,32 +100,79 @@ nuke.pluginAddPath("./user", addToSysPath=False)
 nuke.pluginAddPath("caravr", addToSysPath=False)
 nuke.pluginAddPath("air", addToSysPath=False)
 nuke.pluginAddPath(r"Expression", addToSysPath=False)
-
-
 knobdefaults.initKnobDefaults()
+#___________________________________________________________________________________________________________
 
-# Register default ViewerProcess LUTs.
+
+#==================== 
+#_[]_STAMPS 
+# 
+nuke.pluginAddPath("stamps")
+#___________________________________________________________________________________________________________ 
+
+
+#==================== 
+#_[]_eTOOLS_MENU 
+nuke.pluginAddPath('./eTools')
+nuke.pluginAddPath('./eTools/Icons')
+nuke.pluginAddPath('./eTools/Gizmos')
+#___________________________________________________________________________________________________________ 
+
+
+#==================== 
+#_[]_X_TOOLS_MENU 
+nuke.pluginAddPath('./X_Tools')
+nuke.pluginAddPath('./X_Tools/Icons')
+nuke.pluginAddPath('./X_Tools/Gizmos')
+#___________________________________________________________________________________________________________ 
+
+
+#====================
+#_[]_NST_PLUGIN_FOLDER_CAMPUS
+nuke.pluginAddPath("//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
+#___________________________________________________________________________________________________________
+
+
+#====================
+#_[]_TRACTOR_PLUGIN_FOLDER
+nuke.pluginAddPath("./Tractor")
+if nuke.NUKE_VERSION_MAJOR == 12:
+	import NukeToTractor12
+else:
+	import NukeToTractor
+# try:
+	# if nuke.NUKE_VERSION_STRING=="12.2v3":
+		# Tractor_path = "./Tractor_p2"
+		# nuke.pluginAddPath(Tractor_path)
+# except:
+	# pass
+
+# try:
+	# if nuke.NUKE_VERSION_STRING=="13.1v1":
+		# Tractor_path = "Tractor_p3"
+		# nuke.pluginAddPath(Tractor_path)
+		# print (Tractor_path)
+# except:
+	# pass
+#___________________________________________________________________________________________________________
+
+
+#====================
+#_[]_DEFAULT_VIEWERPROCESS LUTs
 if ocioSupported :
   nukescripts.ViewerProcess.register_default_viewer_processes()
 
 # Here are some more examples of ViewerProcess setup.
-#
 # nuke.ViewerProcess.register("Cineon", nuke.createNode, ("ViewerProcess_1DLUT", "current Cineon"))
-#
 # Note that in most cases you will want to create a gizmo with the appropriate
 # node inside and only expose parameters that you want the user to be able
 # to modify when they open the Viewer Process node's control panel.
-#
 # The "apply LUT to color channels only" option will only work with ViewerProcess LUTs if they have
 # a "rgb_only" knob set to 1.
-#
 # The VectorField node can be used to apply a 3D LUT.
 # VectorField features both software (CPU) and GPU implementations.
-#
 # nuke.ViewerProcess.register("3D LUT", nuke.createNode, ("Vectorfield", "vfield_file /var/tmp/test.3dl"))
-#
 # You can also use the Truelight node.
-#
 # nuke.ViewerProcess.register("Truelight", nuke.createNode, ("Truelight", "profile /Applications/Nuke5.2v1/Nuke5.2v1.app/Contents/MacOS/plugins/truelight3/profiles/KodakVisionPremier display sRGB enable_display true"))
 
 # register some file extensions to show up in the file browser as sequences
@@ -148,10 +222,11 @@ nuke.addSequenceFileExtension("tiff16");
 nuke.addSequenceFileExtension("yuv");
 nuke.addSequenceFileExtension("xpm");
 nuke.addSequenceFileExtension("");
+#___________________________________________________________________________________________________________
 
 
-# Pickle support
-
+#====================
+#_[]_PICKLE_SUPPORT
 class __node__reduce__():
   def __call__(s, className, script):
     n = nuke.createNode(className, knobs = script, inpanel = False)
@@ -167,12 +242,13 @@ class __group__reduce__():
     for i in range(g.inputs()): g.setInput(0, None)
     g.autoplace()
 __group__reduce = __group__reduce__()
+#___________________________________________________________________________________________________________
 
 
-
-# Define image formats:
+#====================
+#_[]_IMAGE FORMATS
 nuke.load("formats.tcl")
-# back-compatibility for users setting root format in formats.tcl:
+#back-compatibility for users setting root format in formats.tcl:
 if nuke.knobDefault("Root.format")==None:
   nuke.knobDefault("Root.format", nuke.value("root.format"))
   nuke.knobDefault("Root.proxy_format", nuke.value("root.proxy_format"))
@@ -190,88 +266,36 @@ if nuke.usingPerformanceTimers():
   profileFile = nuke.performanceProfileFilename()
   if profileFile != None:
     addProfileOutput(profileFile)
-    
-# ------------------------------------------------------------------------- #    
-# Knob Default Overrides
+#___________________________________________________________________________________________________________
 
+
+#====================
+#_[]_KNOB_DEFAUKT_OVERRIDES
 # PropertiesMaxPanels at 1 Max
 nuke.knobDefault("Properties.maxPanels", "1")
-
-# Shuffle Label to display Channel Input name in White
+# [Shuffle] Label to display Channel Input name in White
 nuke.knobDefault("Shuffle2.label", "[value in1]")
 nuke.knobDefault("Shuffle2.note_font_color", "0x3fffff")
-
-# Copy Label to display Channel Input name in White
+# [Copy] Label to display Channel Input name in White
 nuke.knobDefault("Copy.note_font_color", "0x3fffff")
-
-# Switch Label to display Channel Input name
+# [Switch] Label to display Channel Input name
 nuke.knobDefault("Switch.label", "[value which]")
-
-# Remove to be as 'keep/rgba'
+# [Remove] to be as 'keep/rgba'
 nuke.knobDefault("Remove.operation", "keep")
 nuke.knobDefault("Remove.channels", "rgb")
 nuke.knobDefault("Remove.label", "[value channels]")
 nuke.knobDefault("Remove.note_font_color", "0x3fffff")
-
-# Write InputColorSpace to custom ColorSpace Input name
+# [Write] InputColorSpace to custom ColorSpace Input name
 nuke.knobDefault("Write.colorspace", "color_picking")
 nuke.knobDefault("Write.file_type", "exr")
 nuke.knobDefault("Write.datatype", "32_bit_float")
-
-
-# Read InputColorSpace + RAW Override
+# [Read] InputColorSpace + RAW Override
 nuke.knobDefault("Read.colorspace", "rendering")
 nuke.knobDefault("Read.raw", "1")
-
-# OCIOColorSpace InputColorSpace/OutputColorSpace Overrides
-nuke.knobDefault("OCIOColorSpace.in_colorspace", "matte_paint")
+# [OCIOColorSpace] InputColorSpace/OutputColorSpace Overrides
+nuke.knobDefault("OCIOColorSpace.in_colorspace", "color_picking")
 nuke.knobDefault("OCIOColorSpace.out_colorspace", "rendering")
-
-# Connect InputHidden set as True
-nuke.knobDefault("Connect.hide_input", "1")
-# ------------------------------------------------------------------------- #
-
-nuke.pluginAddPath("//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
-
-####Tractor
-nuke.pluginAddPath("./Tractor")
-
-
-# try:
-	# if nuke.NUKE_VERSION_STRING=="12.2v3":
-		# Tractor_path = "./Tractor_p2"
-		# nuke.pluginAddPath(Tractor_path)
-# except:
-	# pass
-
-# try:
-	# if nuke.NUKE_VERSION_STRING=="13.1v1":
-		# Tractor_path = "Tractor_p3"
-		# nuke.pluginAddPath(Tractor_path)
-		# print (Tractor_path)
-# except:
-	# pass
-
-
-if nuke.NUKE_VERSION_MAJOR == 12:
-	import NukeToTractor12
-else:
-	import NukeToTractor
-
-#eTools MENU
-nuke.pluginAddPath('./eTools')
-nuke.pluginAddPath('./eTools/Icons')
-nuke.pluginAddPath('./eTools/Gizmos')
-
-#X_Tools MENU
-nuke.pluginAddPath('./X_Tools')
-nuke.pluginAddPath('./X_Tools/Icons')
-nuke.pluginAddPath('./X_Tools/Gizmos')
-
-
-
-import nuke
-import time
-import socket
-
-
+# [Connect] visibleInput set as False
+nuke.knobDefault("Connect.visibleInput", "FALSE")
+#___________________________________________________________________________________________________________
+#=*=*=*=*=*=*=*=*=*=*
