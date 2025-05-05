@@ -6,7 +6,7 @@
             <dock id="" hideTitles="1" activePageId="Toolbar.1">
                 <page id="Toolbar.1"/>
             </dock>
-            <split size="1223" stretch="1"/>
+            <split size="1041" stretch="1"/>
             <splitter orientation="2">
                 <split size="859"/>
                 <dock id="" activePageId="Viewer.1">
@@ -14,27 +14,21 @@
                 </dock>
                 <split size="467"/>
                 <splitter orientation="1">
-                    <split size="519"/>
-                    <dock id="" activePageId="Curve Editor.1" focus="true">
-                        <page id="Curve Editor.1"/>
+                    <split size="1041"/>
+                    <dock id="" activePageId="DopeSheet.1">
                         <page id="DopeSheet.1"/>
-                    </dock>
-                    <split size="700"/>
-                    <dock id="" activePageId="uk.co.thefoundry.histogram.1">
-                        <page id="uk.co.thefoundry.histogram.1"/>
-                        <page id="uk.co.thefoundry.vectorscope.1"/>
-                        <page id="uk.co.thefoundry.waveformscope.1"/>
+                        <page id="Curve Editor.1"/>
                     </dock>
                 </splitter>
             </splitter>
-            <split size="1453"/>
+            <split size="1635"/>
             <dock id="" activePageId="DAG.1">
                 <page id="DAG.1"/>
             </dock>
             <split size="709"/>
             <splitter orientation="2">
                 <split size="914"/>
-                <dock id="" activePageId="Properties.1">
+                <dock id="" activePageId="Properties.1" focus="true">
                     <page id="Properties.1"/>
                     <page id="uk.co.thefoundry.backgroundrenderview.1"/>
                     <page id="Scenegraph.1"/>
