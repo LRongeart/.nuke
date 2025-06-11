@@ -23,6 +23,27 @@ import threading
 import knobdefaults
 import time
 import socket
+import Expression
+import hello
+print("""
+"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'
+------------------------------------------------------------------------------------------------
+>>>>>  APPLICATION STARTUP --   init.py by Loucas RONGEART
+------------------------------------------------------------------------------------------------""")
+#___________________________________________________________________________________________________________ 
+
+print("""INITIALIZATION 
+>> Importing sys
+>> Importing os.path
+>> Importing nuke_internal as nuke
+>> Importing nuke
+>> Importing threading
+>> Importing knobdefaults
+>> Importing time
+>> Importing socket
+>> Importing Expression
+>> Importing hello
+-------------------------""")
 #___________________________________________________________________________________________________________
 
 
@@ -39,6 +60,11 @@ nuke.knobDefault('Root.monitorOutLUT', defaultConfig)
 ocioSupported = not nuke.env["ExternalPython"]
 if ocioSupported :
   import nukescripts.ViewerProcess
+
+print("""COLOR_MANAGEMENT
+>> colorManagement == OCIO
+>> OCIO_config == aces_1.2
+-------------------------""")
 #___________________________________________________________________________________________________________ 
 
 
@@ -78,6 +104,9 @@ threading.current_thread().waitForThreadsOnExitFunc = threadendcallback
 #_[]_NUKE_TEMP_DIR_OVERRIDE to _pathsetup.py
 try:
   nuke_temp_dir = os.environ["NUKE_TEMP_DIR"]
+  print('NUKE_TEMPORARY_DIRECTORY')
+  print(">>", nuke_temp_dir,""" is current NUKE temporary directory.
+-------------------------""")
 except:
   nuke_temp_dir = ""
   assert False, "$NUKE_TEMP_DIR should have been set in _pathsetup.py nuke package has been successfully imported but it didn't set the variable"
@@ -104,22 +133,12 @@ knobdefaults.initKnobDefaults()
 #___________________________________________________________________________________________________________
 
 
-#==================== 
-#_[]_HELLO NUKE
-#
-import hello
-print("""
-"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'
-------------------------------------------------------------------------------------------------
->>>>>  LOG START --   init.py by Loucas RONGEART
-------------------------------------------------------------------------------------------------""")
-#___________________________________________________________________________________________________________ 
 
-
+print('MODULES')
 #==================== 
 #_[]_TRACTOR
 #
-print(">> Importing Tractor")
+print(">> Loading Tractor")
 Tractor_path = "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/Tractor"
 nuke.pluginAddPath("Tractor")
 
@@ -150,7 +169,7 @@ nuke.pluginAddPath("Tractor")
 #==================== 
 #_[]_STAMPS 
 # 
-print(">> Importing Stamps")
+print(">> Loading Stamps")
 nuke.pluginAddPath("stamps")
 
 #___________________________________________________________________________________________________________ 
@@ -158,7 +177,7 @@ nuke.pluginAddPath("stamps")
 
 #==================== 
 #_[]_eTOOLS_MENU
-print(">> Importing eTools")
+print(">> Loading eTools")
 nuke.pluginAddPath('./eTools')
 nuke.pluginAddPath('./eTools/Icons')
 nuke.pluginAddPath('./eTools/Gizmos')
@@ -167,7 +186,7 @@ nuke.pluginAddPath('./eTools/Gizmos')
 
 #==================== 
 #_[]_X_TOOLS_MENU 
-print(">> Importing X_Tools")
+print(">> Loading X_Tools")
 nuke.pluginAddPath('./X_Tools')
 nuke.pluginAddPath('./X_Tools/Icons')
 nuke.pluginAddPath('./X_Tools/Gizmos')
@@ -176,7 +195,7 @@ nuke.pluginAddPath('./X_Tools/Gizmos')
 
 #====================
 #_[]_NST_PLUGIN_FOLDER_CAMPUS
-print(">> Importing NukeSurvivalToolkit")
+print(">> Loading NukeSurvivalToolkit")
 nuke.pluginAddPath("./NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
 #___________________________________________________________________________________________________________
 
@@ -330,7 +349,10 @@ nuke.knobDefault("Connect.visibleInput", "FALSE")
 #=*=*=*=*=*=*=*=*=*=*
 
 print("""------------------------------------------------------------------------------------------------
-<<<<<  LOG END
+<<<<<  STARTUP COMPLETED
 ------------------------------------------------------------------------------------------------
 "`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'
       """)
+
+import hello
+hello.nukeReady()

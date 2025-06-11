@@ -9,10 +9,7 @@ _,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._
     print("""Unpacking modules:
 -----------------------------------------""")
 
-def allModulesUnpacked():
-    print("""-----------------------------------------
-All modules unpacked.""")
-
 def nukeReady():
-    print("""Your NUKE application ready.
------------------------------------------""")
+    print("""-------------------------
+NUKE is up & running.
+-------------------------""")
