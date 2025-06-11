@@ -21,7 +21,6 @@ import webbrowser
 
 #Read Expression folder path
 Expression_path = os.path.dirname(__file__)
-print ("Expression path: " + Expression_path)
 
 
 toolbar = nuke.toolbar("Nodes")
