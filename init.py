@@ -70,7 +70,7 @@ if hasattr(sys, "setdefaultencoding"):
 #_[]_FINISHED_THREAD_CALLBACK
 def threadendcallback():
   return nuke.waitForThreadsToFinish()
-threading.currentThread().waitForThreadsOnExitFunc = threadendcallback
+threading.current_thread().waitForThreadsOnExitFunc = threadendcallback
 #___________________________________________________________________________________________________________
 
 
@@ -105,41 +105,31 @@ knobdefaults.initKnobDefaults()
 
 
 #==================== 
-#_[]_STAMPS 
-# 
-nuke.pluginAddPath("stamps")
+#_[]_HELLO NUKE
+#
+import hello
+print("""
+"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'
+------------------------------------------------------------------------------------------------
+>>>>>  LOG START --   init.py by Loucas RONGEART
+------------------------------------------------------------------------------------------------""")
 #___________________________________________________________________________________________________________ 
 
 
 #==================== 
-#_[]_eTOOLS_MENU 
-nuke.pluginAddPath('./eTools')
-nuke.pluginAddPath('./eTools/Icons')
-nuke.pluginAddPath('./eTools/Gizmos')
-#___________________________________________________________________________________________________________ 
+#_[]_TRACTOR
+#
+print(">> Importing Tractor")
+Tractor_path = "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/Tractor"
+nuke.pluginAddPath("Tractor")
 
 
-#==================== 
-#_[]_X_TOOLS_MENU 
-nuke.pluginAddPath('./X_Tools')
-nuke.pluginAddPath('./X_Tools/Icons')
-nuke.pluginAddPath('./X_Tools/Gizmos')
-#___________________________________________________________________________________________________________ 
-
-
-#====================
-#_[]_NST_PLUGIN_FOLDER_CAMPUS
-nuke.pluginAddPath("//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
-#___________________________________________________________________________________________________________
-
-
-#====================
 #_[]_TRACTOR_PLUGIN_FOLDER
-nuke.pluginAddPath("./Tractor")
-if nuke.NUKE_VERSION_MAJOR == 12:
-	import NukeToTractor12
-else:
-	import NukeToTractor
+#nuke.pluginAddPath("./Tractor")
+#if nuke.NUKE_VERSION_MAJOR == 12:
+#	import NukeToTractor12
+#else:
+#	import NukeToTractor
 # try:
 	# if nuke.NUKE_VERSION_STRING=="12.2v3":
 		# Tractor_path = "./Tractor_p2"
@@ -157,8 +147,44 @@ else:
 #___________________________________________________________________________________________________________
 
 
+#==================== 
+#_[]_STAMPS 
+# 
+print(">> Importing Stamps")
+nuke.pluginAddPath("stamps")
+
+#___________________________________________________________________________________________________________ 
+
+
+#==================== 
+#_[]_eTOOLS_MENU
+print(">> Importing eTools")
+nuke.pluginAddPath('./eTools')
+nuke.pluginAddPath('./eTools/Icons')
+nuke.pluginAddPath('./eTools/Gizmos')
+#___________________________________________________________________________________________________________ 
+
+
+#==================== 
+#_[]_X_TOOLS_MENU 
+print(">> Importing X_Tools")
+nuke.pluginAddPath('./X_Tools')
+nuke.pluginAddPath('./X_Tools/Icons')
+nuke.pluginAddPath('./X_Tools/Gizmos')
+#___________________________________________________________________________________________________________ 
+
+
+#====================
+#_[]_NST_PLUGIN_FOLDER_CAMPUS
+print(">> Importing NukeSurvivalToolkit")
+nuke.pluginAddPath("./NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
+#___________________________________________________________________________________________________________
+
+
+
 #====================
 #_[]_DEFAULT_VIEWERPROCESS LUTs
+print(">> Loading DefaultViewerProcessLUTs")
 if ocioSupported :
   nukescripts.ViewerProcess.register_default_viewer_processes()
 
@@ -227,6 +253,7 @@ nuke.addSequenceFileExtension("");
 
 #====================
 #_[]_PICKLE_SUPPORT
+print(">> Loading PickleSupport")
 class __node__reduce__():
   def __call__(s, className, script):
     n = nuke.createNode(className, knobs = script, inpanel = False)
@@ -247,6 +274,7 @@ __group__reduce = __group__reduce__()
 
 #====================
 #_[]_IMAGE FORMATS
+print(">> Loading ImageFormats")
 nuke.load("formats.tcl")
 #back-compatibility for users setting root format in formats.tcl:
 if nuke.knobDefault("Root.format")==None:
@@ -270,7 +298,8 @@ if nuke.usingPerformanceTimers():
 
 
 #====================
-#_[]_KNOB_DEFAUKT_OVERRIDES
+#_[]_KNOB_DEFAULT_OVERRIDES
+print(">> Loading KnobDefaultOverrides")
 # PropertiesMaxPanels at 1 Max
 nuke.knobDefault("Properties.maxPanels", "1")
 # [Shuffle] Label to display Channel Input name in White
@@ -299,3 +328,9 @@ nuke.knobDefault("OCIOColorSpace.out_colorspace", "rendering")
 nuke.knobDefault("Connect.visibleInput", "FALSE")
 #___________________________________________________________________________________________________________
 #=*=*=*=*=*=*=*=*=*=*
+
+print("""------------------------------------------------------------------------------------------------
+<<<<<  LOG END
+------------------------------------------------------------------------------------------------
+"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'
+      """)
