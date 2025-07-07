@@ -1,0 +1,88 @@
+Error on Write2: SpoolError: Spool error: http transaction: a bytes-like object is required, not 'str'
+Error on Write2: SpoolError: Spool error: http transaction: a bytes-like object is required, not 'str'
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "\\tls-storage02\Install\NUKE\Nuke_PLUG\.nuke_DEV\tractor\tractor_spool_bridge.py", line 4, in <module>
+    from tractor.base.EngineClient import EngineClient
+ModuleNotFoundError: No module named 'tractor'
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "\\tls-storage02\Install\NUKE\Nuke_PLUG\.nuke_DEV\tractor\tractor_spool_bridge.py", line 5, in <module>
+    from tractor.base.EngineClient import EngineClient
+  File "C:\Program Files/Pixar/Tractor-2.4/lib/python2.7/Lib/site-packages\tractor\base\EngineClient.py", line 284
+    os.makedirs(directory, 0700)
+                           ^
+SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "\\tls-storage02\Install\NUKE\Nuke_PLUG\.nuke_DEV\tractor\tractor_spool_bridge.py", line 17, in <module>
+    from tractor.base.EngineClient import EngineClient
+  File "\\tls-storage02\Install\NUKE\Nuke_PLUG\.nuke_DEV\tractor\python2.7_portable\App\Python\Lib\site-packages\tractor\base\EngineClient.py", line 284
+    os.makedirs(directory, 0700)
+                           ^
+SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 35, in <module>
+    main()
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 29, in main
+    result = ec.spool(job_data, owner=owner, spoolfile=spoolfile)
+TypeError: spool() got an unexpected keyword argument 'spoolfile'
+
+Error on Write2: RuntimeError: Bridge error:   File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 29
+    nuke.tprint(f"Spooling job with owner: {owner}, spoolfile: {spoolfile}")
+                                                                          ^
+SyntaxError: invalid syntax
+
+Error on Write2: RuntimeError: Bridge error:   File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 29
+    nuke.tprint(f"Spooling job with owner: {owner}")
+                                                  ^
+SyntaxError: invalid syntax
+
+Error on Write2: RuntimeError: Bridge error:   File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 29
+    nuke.tprint(f"Spooling job with owner: {owner}")
+                                                  ^
+SyntaxError: invalid syntax
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 38, in <module>
+    main()
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 22, in main
+    import nuke
+ImportError: No module named nuke
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 4, in <module>
+    import nuke
+ImportError: No module named nuke
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 38, in <module>
+    main()
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 29, in main
+    nuke.tprint("Spooling job with owner:", owner)
+NameError: global name 'nuke' is not defined
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 43, in <module>
+    main()
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 34, in main
+    nuke.tprint("Spooling job with owner:", owner)
+AttributeError: 'NoneType' object has no attribute 'tprint'
+
+Error on Write2: RuntimeError: Bridge error:   File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 28
+    print(f"Spooling job with owner: {owner}")
+                                            ^
+SyntaxError: invalid syntax
+
+Error on Write2: RuntimeError: Bridge error:   File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 28
+    print(f"Spooling job with owner:", {owner})
+                                    ^
+SyntaxError: invalid syntax
+
+Error on Write2: RuntimeError: Bridge error: Traceback (most recent call last):
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 36, in <module>
+    main()
+  File "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/tractor_spool_bridge.py", line 30, in main
+    result = ec.spool(job_data, owner=owner, spoolfile=spoolfile)
+TypeError: spool() got an unexpected keyword argument 'spoolfile'
+
