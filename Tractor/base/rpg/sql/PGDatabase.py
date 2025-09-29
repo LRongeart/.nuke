@@ -327,12 +327,8 @@ class PGDatabase(Database.Database):
             self.connection = None
         except Exception as error:
             raise Database.SQLConnectionError(
-  <<<<<<< master
-                "unable to close database connection with %s on %s: %s" % (self.db, self.dbhost, str(error)))
-  =======
                   "unable to close database connection with %s on %s: %s" % (x, y, z)
                   (self.db, self.dbhost, str(error)))
-  >>>>>>> main
 
     def _execute(self, query, multi=None):
         """Execute SQL query, but add query to error message if exception."""
@@ -648,3 +644,4 @@ class PGDatabase(Database.Database):
                                      info=self.cursor.description)
         return result
         
+
