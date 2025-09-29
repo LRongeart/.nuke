@@ -9,13 +9,7 @@ adrianpueyo.com
 import nuke
 
 from KnobScripter import config
-try:
-    if nuke.NUKE_VERSION_MAJOR < 11:
-        from PySide import QtGui as QtWidgets
-    else:
-        from PySide2 import QtWidgets
-except ImportError:
-    from Qt import QtWidgets
+from PySide6 import QtWidgets
 
 def remove_comments_and_docstrings(source):
     """

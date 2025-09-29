@@ -9,8 +9,13 @@ import subprocess
 import sys
 import json
 
+  <<<<<<< master
+from PySide6 import QtWidgets, QtCore, QtGui
+from shiboken6 import isValid
+  =======
 from PySide2 import QtWidgets, QtCore, QtGui
 from shiboken2 import isValid
+  >>>>>>> main
 
 # Global reference to prevent garbage collection
 submit_ui_instance = None

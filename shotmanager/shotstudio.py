@@ -5,7 +5,8 @@ import getpass
 import os
 import json
 import re
-from PySide2 import QtWidgets, QtCore, QtGui
+
+from PySide6 import QtWidgets, QtCore, QtGui
 
 
 PROJECTS_ROOT = "E:/SHOWS"

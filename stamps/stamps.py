@@ -50,16 +50,10 @@ import os
 if sys.version_info[0] >= 3:
     unicode = str
 
-# PySide import switch
-try:
-    if nuke.NUKE_VERSION_MAJOR < 11:
-        from PySide import QtCore, QtGui, QtGui as QtWidgets
-        from PySide.QtCore import Qt
-    else:
-        from PySide2 import QtWidgets, QtGui, QtCore
-        from PySide2.QtCore import Qt
-except ImportError:
-    from Qt import QtCore, QtGui, QtWidgets
+
+# PySide6 import (migrated from PySide/PySide2/Qt)
+from PySide6 import QtWidgets, QtGui, QtCore
+from PySide6.QtCore import Qt
 
 # Import stamps_config
 # Optional: place the stamps_config.py file anywhere in your python path (i.e. in your /.nuke folder)

@@ -4,8 +4,8 @@ import os
 import shotmanager
 import json
 
-from PySide2 import QtWidgets, QtCore, QtGui
-from shiboken2 import isValid
+from PySide6 import QtWidgets, QtCore, QtGui
+from shiboken6 import isVali
 
 
 
