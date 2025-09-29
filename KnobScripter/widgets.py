@@ -9,17 +9,12 @@ from collections import OrderedDict
 import nuke
 import os
 
-try:
-    if nuke.NUKE_VERSION_MAJOR < 11:
-        from PySide import QtCore, QtGui, QtGui as QtWidgets
-        from PySide.QtCore import Qt
-    else:
-        from PySide2 import QtWidgets, QtGui, QtCore
-        from PySide2.QtCore import Qt
-except ImportError:
-    from Qt import QtCore, QtGui, QtWidgets
+
+from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6.QtCore import Qt, Signal
 
 from KnobScripter import ksscripteditor, config
+
 
 
 class GripWidget(QtWidgets.QFrame):
@@ -28,16 +23,16 @@ class GripWidget(QtWidgets.QFrame):
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(inner_widget)
-        layout.setMargin(0)
+        layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout)
 
         cursor = None
         if resize_x and resize_y:
-            cursor = Qt.SizeAllCursor
+            cursor = Qt.CursorShape.SizeAllCursor
         elif resize_x:
-            cursor = Qt.SplitHCursor
+            cursor = Qt.CursorShape.SplitHCursor
         elif resize_y:
-            cursor = Qt.SplitVCursor
+            cursor = Qt.CursorShape.SplitVCursor
 
         self.setCursor(QtGui.QCursor(cursor))
 
@@ -81,7 +76,7 @@ class HLine(QtWidgets.QFrame):
 
 
 class ClickableWidget(QtWidgets.QFrame):
-    clicked = QtCore.Signal()
+    clicked = Signal()
 
     def __init__(self, parent=None):
         super(ClickableWidget, self).__init__(parent)
@@ -90,6 +85,7 @@ class ClickableWidget(QtWidgets.QFrame):
 
     def setHighlighted(self, highlighted=False):
         self.highlighted = highlighted
+
 
     def enterEvent(self, event):
         """ Mouse hovering """
@@ -104,10 +100,11 @@ class ClickableWidget(QtWidgets.QFrame):
     def mouseReleaseEvent(self, event):
         """ Emit clicked """
         super(ClickableWidget, self).mouseReleaseEvent(event)
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             if self.highlighted:
                 self.clicked.emit()
                 pass
+
 
 
 class Arrow(QtWidgets.QFrame):
@@ -157,9 +154,23 @@ class ToggableGroup(QtWidgets.QFrame):
         # Layout
         # 1. Top Layout
         # Left (clickable) part, for the title
+
+
+    def __init__(self, parent=None, title="", collapsed=False):
+        super(ToggableGroup, self).__init__(parent)
+
+        self.collapsed = collapsed
+
+        # Widgets and layouts
+        self.arrow = Arrow(parent=self)
+
+        # Layout
+        # 1. Top Layout
+        # Left (clickable) part, for the title
         self.top_clickable_widget = ClickableWidget()
         self.top_clickable_layout = QtWidgets.QHBoxLayout()
         self.top_clickable_layout.setSpacing(6)
+
         self.top_clickable_widget.setLayout(self.top_clickable_layout)
         # self.top_clickable_widget.setStyleSheet(".ClickableWidget{margin-top: 3px;background:transparent}")
         # self.top_clickable_widget.setStyleSheet("background:#000;float:left;")
@@ -171,14 +182,14 @@ class ToggableGroup(QtWidgets.QFrame):
         self.top_clickable_layout.addWidget(self.arrow)
         self.title_label = QtWidgets.QLabel()
         self.title_label.setStyleSheet("line-height:50%;")
-        self.title_label.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.title_label.setTextInteractionFlags(Qt.TextInteractionFlag.NoTextInteraction)
         self.title_label.setWordWrap(True)
 
-        self.top_clickable_widget.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        self.top_clickable_widget.setSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         self.setTitle(title)
         self.top_clickable_layout.addWidget(self.title_label)
         self.top_clickable_layout.addSpacing(1)
-        self.top_clickable_layout.setAlignment(Qt.AlignVCenter)
+        self.top_clickable_layout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
 
         # Together
         self.top_layout = QtWidgets.QHBoxLayout()
@@ -201,11 +212,11 @@ class ToggableGroup(QtWidgets.QFrame):
         self.setLayout(master_layout)
         self.setCollapsed(self.collapsed)
 
-        master_layout.setMargin(0)
-        self.content_layout.setMargin(0)
-        self.content_layout.setSizeConstraint(self.content_layout.SetNoConstraint)
+        master_layout.setContentsMargins(0, 0, 0, 0)
+        self.content_layout.setContentsMargins(0, 0, 0, 0)
+        self.content_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetNoConstraint)
         self.setMinimumHeight(10)
-        self.top_clickable_layout.setMargin(0)
+        self.top_clickable_layout.setContentsMargins(0, 0, 0, 0)
 
     def setTitle(self, text=""):
         self.title_label.setText(text)
@@ -253,7 +264,7 @@ class ToggableCodeGroup(ToggableGroup):
 
 
 class RadioSelector(QtWidgets.QWidget):
-    radio_selected = QtCore.Signal(object)
+    radio_selected = Signal(object)
 
     def __init__(self, item_list=None, orientation=0, parent=None):
         """
@@ -280,7 +291,7 @@ class RadioSelector(QtWidgets.QWidget):
         self.layout.addStretch(1)
 
         self.setLayout(self.layout)
-        self.layout.setMargin(0)
+        self.layout.setContentsMargins(0, 0, 0, 0)
 
     def button_clicked(self, button):
         self.radio_selected.emit(str(button.text()))
@@ -326,4 +337,4 @@ class APToolButton(QtWidgets.QToolButton):
         else:
             self.icon_path = os.path.join(config.ICONS_DIR, icon_filename)
 
-        self.setIcon(QtGui.QIcon(self.icon_path))
+            self.setIcon(QtGui.QIcon(self.icon_path))

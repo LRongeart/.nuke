@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="3439" h="1369" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1419" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1079"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="248"/>
+                <splitter orientation="1">
+                    <split size="704"/>
+                    <dock id="" activePageId="Curve Editor.1">
+                        <page id="Curve Editor.1"/>
+                        <page id="DopeSheet.1"/>
+                    </dock>
+                    <split size="242"/>
+                    <dock id="" activePageId="uk.co.thefoundry.histogram.1">
+                        <page id="uk.co.thefoundry.histogram.1"/>
+                    </dock>
+                    <split size="285"/>
+                    <dock id="" activePageId="uk.co.thefoundry.waveformscope.1">
+                        <page id="uk.co.thefoundry.waveformscope.1"/>
+                    </dock>
+                    <split size="176"/>
+                    <dock id="" activePageId="uk.co.thefoundry.vectorscope.1">
+                        <page id="uk.co.thefoundry.vectorscope.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="1151"/>
+            <dock id="" activePageId="DAG.1" focus="true">
+                <page id="DAG.1"/>
+            </dock>
+            <split size="817"/>
+            <splitter orientation="2">
+                <split size="1022"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                    <page id="Scenegraph.1"/>
+                </dock>
+                <split size="305"/>
+                <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                    <page id="uk.co.thefoundry.scripteditor.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>

@@ -1,0 +1,21 @@
+Preferences {
+ inputs 0
+ name Preferences
+ selectedGPUDeviceName "NVIDIA GeForce RTX 2060"
+ platformPathRemaps ""
+ ShadeDAGNodes false
+ ArrowColorLeft 0xff0000ff
+ ArrowColorRight 0xff00ff
+ ArrowColorUp 0xffff00ff
+ ArrowColorDown 0xff00ff
+ deep_arrow_color 0x4cffff
+ InputArrowSize 15.8
+ LeftInputArrowSize 14.4
+ OutputArrowSize 13.8
+ ArrowheadLength 5.7
+ ArrowheadWidth 8.4
+ ArrowWidth 1.8
+ dot_node_scale 1.5
+ Viewer3DControlEmulation Maya
+ defaultFlipbook "Flipbook Viewer"
+}

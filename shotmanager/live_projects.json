@@ -1,0 +1,10 @@
+{
+    "SHOW_TEST": {"status": "active"},
+	"3D3": {"status": "archived"},
+    "3D4": {"status": "archived"},
+	"EXIT": {"status": "active"},
+	"TUMACO": {"status": "active"},
+	"FLOWER": {"status": "active"},
+	"PUMPKIN": {"status": "active"},
+	"MIXUP": {"status": "active"}
+}

@@ -16,6 +16,7 @@
 #_[]_INITIALISATION 
 #
 import sys
+import os
 import os.path
 import nuke_internal as nuke
 import nuke
@@ -24,26 +25,94 @@ import knobdefaults
 import time
 import socket
 import Expression
-import hello
-print("""
-"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'
-------------------------------------------------------------------------------------------------
->>>>>  APPLICATION STARTUP --   init.py by Loucas RONGEART
-------------------------------------------------------------------------------------------------""")
+
+# Attempt to import colorama for colored terminal output
+# This is optional and will not affect the functionality of Nuke.
+try:
+    import colorama
+    colorama.init()
+    from colorama import Fore, Style
+except ImportError:
+    # fallback: define dummy Fore/Style
+    class Dummy:
+        RESET_ALL = ''
+    class DummyFore(Dummy):
+        GREEN = YELLOW = RED = CYAN = MAGENTA = GREY = ''
+    Fore = DummyFore()
+    Style = Dummy()
+
+import re
+
+def cprint(*args, **kwargs):
+    text = ' '.join(str(a) for a in args)
+    # List of (pattern, color) tuples, multi-character patterns first
+    patterns = [
+        (r'[><]', Fore.LIGHTYELLOW_EX),
+        (r'\+', Fore.YELLOW),
+        (r'=', Fore.YELLOW),
+        (r'-', Fore.YELLOW),
+        (r'!', Fore.RED),
+        (r'\|', Fore.YELLOW),
+        (r'SUCCESS', Fore.GREEN),
+        (r'Importing', Fore.LIGHTGREEN_EX),
+        (r'Loading', Fore.LIGHTRED_EX),
+        (r'init.py', Fore.RED),
+        (r'NUKE', Fore.RED),
+    ]
+    for pat, color in patterns:
+        text = re.sub(pat, lambda m: color + m.group(0) + Style.RESET_ALL, text)
+    print(text, **kwargs)
+
+nuke_temp_dir = os.environ["NUKE_TEMP_DIR"]
+
+print("""                     __,-~~/~    `---.
+                   _/_,---(      ,    )
+               __ /        <    /   )  \___
+- ------===;;;'====------------------===;;;===----- -  -
+                  \/  ~"~"~"~"~"~\~"~)~"/
+                  (_ (   \  (     >    \)
+                   \_( _ <         >_>'
+                      ~ `-i' ::>|--"
+                          I;|.|.|       You'll always have a blast with NUKE!
+                         <|i::|i|`.
+                        (` ^'"`-' ")""")
+#___________________________________________________________________________________________________________ 
+#print the current directory   
+cprint("SESSION USER DATA")
+cprint("+==============================================================================================+")
+cprint("    | >> NUKE Directory:   {}".format(os.getcwd()))
+cprint("    | >> NUKE Version:     {}".format(nuke.NUKE_VERSION_STRING))
+cprint("    | >> NUKE Executable:  {}".format(os.path.basename(sys.executable)))
+cprint("    | >> NUKE Python:      {}".format(sys.version))
+cprint("    | >> NUKE Temp Dir:    {}".format(nuke_temp_dir))
+cprint("    | >> NUKE Hostname:    {}".format(socket.gethostname()))
+cprint("    | >> NUKE User:        {}".format(os.getlogin()))
+cprint("""+==============================================================================================+
+""")
+
+
+
+cprint(os.path.basename(__file__))
+cprint("""+==============================================================================================+
+>>>>>  INIT.PY STARTUP --   init.py by Loucas RONGEART
++==============================================================================================+""")
 #___________________________________________________________________________________________________________ 
 
-print("""INITIALIZATION 
->> Importing sys
->> Importing os.path
->> Importing nuke_internal as nuke
->> Importing nuke
->> Importing threading
->> Importing knobdefaults
->> Importing time
->> Importing socket
->> Importing Expression
->> Importing hello
--------------------------""")
+
+cprint("""+-<INITIALIZATION>----------------------------------
+| >> Importing sys
+| >> Importing os.path
+| >> Importing nuke_internal as nuke
+| >> Importing nuke
+| >> Importing threading
+| >> Importing knobdefaults
+| >> Importing time
+| >> Importing socket
+| >> Importing Expression
+| >> Importing hello
++-----------------------------------------------------""")
+
+
 #___________________________________________________________________________________________________________
 
 
@@ -61,11 +130,11 @@ ocioSupported = not nuke.env["ExternalPython"]
 if ocioSupported :
   import nukescripts.ViewerProcess
 
-print("""COLOR_MANAGEMENT
->> colorManagement == OCIO
->> OCIO_config == aces_1.2
--------------------------""")
-#___________________________________________________________________________________________________________ 
+cprint("""+-<COLOR_MANAGEMENT>----------------------------------
+| >> colorManagement == OCIO
+| >> OCIO_config == aces_1.2
++-----------------------------------------------------""")
+#___________________________________________________________________________________________________________
 
 
 #==================== 
@@ -104,9 +173,9 @@ threading.current_thread().waitForThreadsOnExitFunc = threadendcallback
 #_[]_NUKE_TEMP_DIR_OVERRIDE to _pathsetup.py
 try:
   nuke_temp_dir = os.environ["NUKE_TEMP_DIR"]
-  print('NUKE_TEMPORARY_DIRECTORY')
-  print(">>", nuke_temp_dir,""" is current NUKE temporary directory.
--------------------------""")
+  cprint('+-<NUKE_TEMP_DIR>-------------------------------------')
+  cprint("| >>", nuke_temp_dir,"""
++-----------------------------------------------------""")
 except:
   nuke_temp_dir = ""
   assert False, "$NUKE_TEMP_DIR should have been set in _pathsetup.py nuke package has been successfully imported but it didn't set the variable"
@@ -134,76 +203,60 @@ knobdefaults.initKnobDefaults()
 
 
 
-print('MODULES')
+cprint('+-<INIT.PY_MODULES>-----------------------------------')
 #==================== 
-#_[]_TRACTOR
+#_[]_TRACTOR_&_SHOTMANAGER
 #
-print(">> Loading Tractor")
-Tractor_path = "//tls-storage02/Install/NUKE/Nuke_PLUG/.nuke/Tractor"
-nuke.pluginAddPath("Tractor")
+cprint("| Loading tractor")
+cprint("| >> !SUCCESS Loaded: tractor.TractorSpool .....100%")
+cprint("| Loading shotManager")
+cprint("| >> !SUCCESS Loaded: shotManager.ShotBrowser .....100%")
+cprint("| >> !SUCCESS Loaded: shotManager.ShotStudio .....100%")
 
-
-#_[]_TRACTOR_PLUGIN_FOLDER
-#nuke.pluginAddPath("./Tractor")
-#if nuke.NUKE_VERSION_MAJOR == 12:
-#	import NukeToTractor12
-#else:
-#	import NukeToTractor
-# try:
-	# if nuke.NUKE_VERSION_STRING=="12.2v3":
-		# Tractor_path = "./Tractor_p2"
-		# nuke.pluginAddPath(Tractor_path)
-# except:
-	# pass
-
-# try:
-	# if nuke.NUKE_VERSION_STRING=="13.1v1":
-		# Tractor_path = "Tractor_p3"
-		# nuke.pluginAddPath(Tractor_path)
-		# print (Tractor_path)
-# except:
-	# pass
-#___________________________________________________________________________________________________________
 
 
 #==================== 
-#_[]_STAMPS 
-# 
-print(">> Loading Stamps")
+#_[]_STAMPS
+#
+cprint("| Loading stamps")
 nuke.pluginAddPath("stamps")
+cprint("| >> !SUCCESS Loaded: stamps .....100%")
 
 #___________________________________________________________________________________________________________ 
 
 
 #==================== 
 #_[]_eTOOLS_MENU
-print(">> Loading eTools")
+cprint("| Loading eTools")
 nuke.pluginAddPath('./eTools')
 nuke.pluginAddPath('./eTools/Icons')
 nuke.pluginAddPath('./eTools/Gizmos')
+cprint("| >> !SUCCESS Loaded: eTools .....100%")
 #___________________________________________________________________________________________________________ 
 
 
 #==================== 
 #_[]_X_TOOLS_MENU 
-print(">> Loading X_Tools")
+cprint("| Loading X_Tools")
 nuke.pluginAddPath('./X_Tools')
 nuke.pluginAddPath('./X_Tools/Icons')
 nuke.pluginAddPath('./X_Tools/Gizmos')
+cprint("| >> !SUCCESS Loaded: X_Tools .....100%")
 #___________________________________________________________________________________________________________ 
 
 
 #====================
 #_[]_NST_PLUGIN_FOLDER_CAMPUS
-print(">> Loading NukeSurvivalToolkit")
+cprint("| Loading nukeSurvivalToolkit")
 nuke.pluginAddPath("./NukeSurvivalToolkit_publicRelease-2.1.1/NukeSurvivalToolkit")
+cprint("| >> !SUCCESS Loaded: nukeSurvivalToolkit .....100%")
 #___________________________________________________________________________________________________________
 
 
 
 #====================
 #_[]_DEFAULT_VIEWERPROCESS LUTs
-print(">> Loading DefaultViewerProcessLUTs")
+cprint("| Loading defaultViewerProcessLUTs")
 if ocioSupported :
   nukescripts.ViewerProcess.register_default_viewer_processes()
 
@@ -267,12 +320,13 @@ nuke.addSequenceFileExtension("tiff16");
 nuke.addSequenceFileExtension("yuv");
 nuke.addSequenceFileExtension("xpm");
 nuke.addSequenceFileExtension("");
+cprint("| >> !SUCCESS Loaded: defaultViewerProcessLUTs .....100%")
 #___________________________________________________________________________________________________________
 
 
 #====================
 #_[]_PICKLE_SUPPORT
-print(">> Loading PickleSupport")
+cprint("| Loading pickleSupport")
 class __node__reduce__():
   def __call__(s, className, script):
     n = nuke.createNode(className, knobs = script, inpanel = False)
@@ -288,12 +342,15 @@ class __group__reduce__():
     for i in range(g.inputs()): g.setInput(0, None)
     g.autoplace()
 __group__reduce = __group__reduce__()
+cprint("| >> !SUCCESS Loaded: pickleSupport .....100%")
+cprint("""| >> Documentation: 
+| https://boostorg.github.io/python/doc/html/reference/topics/pickle_support.html""")
 #___________________________________________________________________________________________________________
 
 
 #====================
 #_[]_IMAGE FORMATS
-print(">> Loading ImageFormats")
+cprint("| Loading imageFormats")
 nuke.load("formats.tcl")
 #back-compatibility for users setting root format in formats.tcl:
 if nuke.knobDefault("Root.format")==None:
@@ -301,7 +358,7 @@ if nuke.knobDefault("Root.format")==None:
   nuke.knobDefault("Root.proxy_format", nuke.value("root.proxy_format"))
 
 def addProfileOutput(filename):
-  print(("TIMING ENABLED: profile will be saved to ", filename))
+  cprint(("TIMING ENABLED: profile will be saved to ", filename))
   import nukescripts
   nukeProfiler = nukescripts.NukeProfiler()
   nukeProfiler.setPathToFile(filename)
@@ -313,46 +370,76 @@ if nuke.usingPerformanceTimers():
   profileFile = nuke.performanceProfileFilename()
   if profileFile != None:
     addProfileOutput(profileFile)
+cprint("| >> !SUCCESS Loaded: imageFormats .....100%")
 #___________________________________________________________________________________________________________
 
 
 #====================
 #_[]_KNOB_DEFAULT_OVERRIDES
-print(">> Loading KnobDefaultOverrides")
+cprint("| Loading knobDefaultOverrides")
+cprint("| >> !SUCCESS Loaded: knobDefaultOverrides .....100%")
+cprint("""+-<knobDefaultOverride.printValues()>------------------
+| <KNOB_DEFAULT_OVERRIDES>""")
+
+
 # PropertiesMaxPanels at 1 Max
 nuke.knobDefault("Properties.maxPanels", "1")
+cprint("| >> knob.DefaultOverride: Properties.maxPanels == 1")
+
 # [Shuffle] Label to display Channel Input name in White
 nuke.knobDefault("Shuffle2.label", "[value in1]")
 nuke.knobDefault("Shuffle2.note_font_color", "0x3fffff")
+cprint("| >> knob.DefaultOverride: Shuffle2.label == '[value in1]'")
+cprint("| >> knob.DefaultOverride: Shuffle2.note_font_color == '0x3fffff'")
+
 # [Copy] Label to display Channel Input name in White
 nuke.knobDefault("Copy.note_font_color", "0x3fffff")
+cprint("| >> knob.DefaultOverride: Copy.note_font_color == '0x3fffff'")
+
 # [Switch] Label to display Channel Input name
 nuke.knobDefault("Switch.label", "[value which]")
+cprint("| >> knob.DefaultOverride: Switch.label == '[value which]'")
+
 # [Remove] to be as 'keep/rgba'
 nuke.knobDefault("Remove.operation", "keep")
 nuke.knobDefault("Remove.channels", "rgb")
 nuke.knobDefault("Remove.label", "[value channels]")
 nuke.knobDefault("Remove.note_font_color", "0x3fffff")
+cprint("| >> knob.DefaultOverride: Remove.label == 'keep'")
+cprint("| >> knob.DefaultOverride: Remove.channels == 'rgb'")
+cprint("| >> knob.DefaultOverride: Remove.label == '[value channels]'")
+cprint("| >> knob.DefaultOverride: Properties.note_font_color == '0x3fffff'")
+
 # [Write] InputColorSpace to custom ColorSpace Input name
 nuke.knobDefault("Write.colorspace", "color_picking")
 nuke.knobDefault("Write.file_type", "exr")
 nuke.knobDefault("Write.datatype", "32_bit_float")
+cprint("| >> knob.DefaultOverride: Write.colorspace == 'color_picking'")
+cprint("| >> knob.DefaultOverride: Write.file_type == 'exr'")
+cprint("| >> knob.DefaultOverride: Write.datatype == '32_bit_float'")
+
 # [Read] InputColorSpace + RAW Override
 nuke.knobDefault("Read.colorspace", "rendering")
 nuke.knobDefault("Read.raw", "1")
+cprint("| >> knob.DefaultOverride: Read.colorspace == 'rendering'")
+cprint("| >> knob.DefaultOverride: Read.raw == '1'")
+
 # [OCIOColorSpace] InputColorSpace/OutputColorSpace Overrides
 nuke.knobDefault("OCIOColorSpace.in_colorspace", "color_picking")
 nuke.knobDefault("OCIOColorSpace.out_colorspace", "rendering")
+cprint("| >> knob.DefaultOverride: OCIOColorSpace.in_colorspace == 'color_picking'")
+cprint("| >> knob.DefaultOverride: OCIOColorSpace.out_colorspace == 'rendering'")
+
 # [Connect] visibleInput set as False
 nuke.knobDefault("Connect.visibleInput", "FALSE")
+cprint("| >> knob.DefaultOverride: Connect.visibleInput == 'FALSE'")
 #___________________________________________________________________________________________________________
 #=*=*=*=*=*=*=*=*=*=*
 
-print("""------------------------------------------------------------------------------------------------
-<<<<<  STARTUP COMPLETED
-------------------------------------------------------------------------------------------------
-"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'
-      """)
+#_[]_END_OF_MODULES
+cprint("+-----------------------------------------------------")
 
-import hello
-hello.nukeReady()
+cprint("""+==============================================================================================+
+<<<<<  INIT.PY STARTUP COMPLETED
++==============================================================================================+
+      """)

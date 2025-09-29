@@ -1,0 +1,106 @@
+#! C:/Program Files/Nuke15.1v2/nuke-15.1.2.dll -nx
+version 15.1 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1917" h="1008" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1254" stretch="1"/>
+            <splitter orientation="2">
+                <split size="567"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="399"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/test_spool_v01.nk
+ project_directory "\[python \{nuke.script_directory()\}]"
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.2
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut "sRGB (ACES)"
+ monitorOutLUT "sRGB (ACES)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {1 0 0 0}
+ name Constant1
+ xpos 166
+ ypos -167
+}
+HueShift {
+ color_saturation {{curve x1 0 x100 4}}
+ name HueShift1
+ xpos 166
+ ypos -95
+}
+Reformat {
+ format "256 256 0 0 256 256 1 square_256"
+ name Reformat1
+ xpos 166
+ ypos -41
+}
+Write {
+ file //tls-storage02/Install/NUKE/Nuke_PLUG/.nuke_DEV/tractor/test_spool_v01/Render.%04d.exr
+ file_type exr
+ first_part rgba
+ colorspace color_picking
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name WriteOUT
+ xpos 166
+ ypos -5
+}
+set Nca33a000 [stack 0]
+Write {
+ file_type exr
+ first_part rgba
+ colorspace color_picking
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write1
+ xpos 166
+ ypos -41
+}
+push $Nca33a000
+Viewer {
+ frame 1
+ frame_range 1-100
+ viewerProcess "sRGB (ACES)"
+ monitorOutNDISenderName "NukeX - untitled - Viewer1"
+ name Viewer1
+ xpos -40
+ ypos -9
+}
