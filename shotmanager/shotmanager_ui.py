@@ -5,7 +5,7 @@ import shotmanager
 import json
 
 from PySide6 import QtWidgets, QtCore, QtGui
-from shiboken6 import isValid
+from shiboken6 import isVali
 
 
 

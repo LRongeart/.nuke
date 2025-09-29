@@ -1134,6 +1134,8 @@ particlesMenu.addCommand('Sparky DB', "nuke.createNode('{}Sparky')".format(prefi
 particlesMenu.addCommand('ParticleLights MHD', "nuke.createNode('{}ParticleLights')".format(prefixNST), icon="ToolbarParticles.png")
 particlesMenu.addCommand('ParticleKiller NKPD', "nuke.createNode('{}ParticleKiller')".format(prefixNST), icon="ToolbarParticles.png")
 
+
+cprint("| Loading Particles_Tools")
 cprint("| >> -SUCCESS- Loaded: Particles_Tools .....100%")
 cprint("+-<ParticlesTools.printGizmos()>-------------")
 cprint("| >> Adding node: ('Particles/waterSchmutz')")
