@@ -5,7 +5,7 @@ import shotmanager
 import json
 
 from PySide6 import QtWidgets, QtCore, QtGui
-from shiboken6 import isVali
+from shiboken6 import isValid
 
 
 
@@ -1517,3 +1517,4 @@ def launch_help_window():
 
     help_ui_instance = ShowManagerUIHelp()
     help_ui_instance.show()
+
