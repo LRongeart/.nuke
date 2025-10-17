@@ -424,11 +424,23 @@ nuke.knobDefault("Read.raw", "1")
 cprint("| >> knob.DefaultOverride: Read.colorspace == 'rendering'")
 cprint("| >> knob.DefaultOverride: Read.raw == '1'")
 
-# [OCIOColorSpace] InputColorSpace/OutputColorSpace Overrides
+# [OCIOColorSpace] OCIOv2 Overrides
 nuke.knobDefault("OCIOColorSpace.in_colorspace", "color_picking")
 nuke.knobDefault("OCIOColorSpace.out_colorspace", "rendering")
 cprint("| >> knob.DefaultOverride: OCIOColorSpace.in_colorspace == 'color_picking'")
 cprint("| >> knob.DefaultOverride: OCIOColorSpace.out_colorspace == 'rendering'")
+
+# [OCIODisplay] OCIOv2 Overrides
+nuke.knobDefault("OCIODisplay.colorspace", "scene_linear")
+nuke.knobDefault("OCIODisplay.display", "sRGB - Display")
+nuke.knobDefault("OCIODisplay.view", "ACES 1.0 - SDR Video")
+nuke.knobDefault("OCIODisplay.invert", "True")
+nuke.knobDefault("OCIODisplay.label", "invert='[value invert]'")
+cprint("| >> knob.DefaultOverride: OCIODisplay.colorspace == 'scene_linear'")
+cprint("| >> knob.DefaultOverride: OCIODisplay.display == 'sRGB - Display'")
+cprint("| >> knob.DefaultOverride: OCIODisplay.view == 'ACES 1.0 - SDR Video'")
+cprint("| >> knob.DefaultOverride: OCIODisplay.invert == 'True'")
+cprint("| >> knob.DefaultOverride: OCIODisplay.label == 'invert='[value invert]''")
 
 # [Connect] visibleInput set as False
 nuke.knobDefault("Connect.visibleInput", "FALSE")

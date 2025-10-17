@@ -1134,8 +1134,6 @@ particlesMenu.addCommand('Sparky DB', "nuke.createNode('{}Sparky')".format(prefi
 particlesMenu.addCommand('ParticleLights MHD', "nuke.createNode('{}ParticleLights')".format(prefixNST), icon="ToolbarParticles.png")
 particlesMenu.addCommand('ParticleKiller NKPD', "nuke.createNode('{}ParticleKiller')".format(prefixNST), icon="ToolbarParticles.png")
 
-
-cprint("| Loading Particles_Tools")
 cprint("| >> -SUCCESS- Loaded: Particles_Tools .....100%")
 cprint("+-<ParticlesTools.printGizmos()>-------------")
 cprint("| >> Adding node: ('Particles/waterSchmutz')")
@@ -1409,14 +1407,14 @@ try:
     import shotmanager
     from shotmanager import shotmanager_ui
 except ImportError as e:
-    nuke.cprint(f"[ShotManager] Failed to import shotmanager_ui: {e}")
+    nuke.tprint(f"[ShotManager] Failed to import shotmanager_ui: {e}")
     shotmanager = None
 
 try: 
     import shotmanager
     from shotmanager import shotstudio
 except ImportError as e:
-    nuke.cprint(f"[ShotManager] Failted to import shotstudio: {e}")
+    nuke.tprint(f"[ShotManager] Failted to import shotstudio: {e}")
 
 menu = nuke.menu("Nuke")
 shotmanager_menu = menu.findItem("ShotManager") or menu.addMenu("ShotManager")
@@ -1448,7 +1446,7 @@ try:
     import submit_to_tractor
     from tractor import submit_to_tractor_ui
 except ImportError as e:
-    nuke.cprint(f"[Tractor] Failed to import submit_to_tractor: {e}")
+    nuke.tprint(f"[Tractor] Failed to import submit_to_tractor: {e}")
     submit_to_tractor = None
 
 if submit_to_tractor and hasattr(submit_to_tractor, "submit_to_tractor"):
